@@ -1,0 +1,89 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 Not Found</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images1/fav.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images1/fav.png' %}">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background: linear-gradient(135deg, #1d2d50, #243fa2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+        }
+        .container {
+            text-align: center;
+        }
+        .error-code {
+            font-size: 120px;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+            animation: glow 1.5s infinite alternate;
+        }
+        .error-message {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .back-home {
+            display: inline-block;
+            padding: 15px 30px;
+            background: #fff;
+            color: #243fa2;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 18px;
+            transition: background 0.3s, color 0.3s;
+        }
+        .back-home:hover {
+            background: #243fa2;
+            color: #fff;
+        }
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px #243fa2, 0 0 20px #243fa2, 0 0 30px #243fa2, 0 0 40px #243fa2, 0 0 50px #243fa2, 0 0 60px #243fa2, 0 0 70px #243fa2;
+            }
+            to {
+                text-shadow: 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #fff, 0 0 50px #fff, 0 0 60px #fff, 0 0 70px #fff, 0 0 80px #fff;
+            }
+        }
+        .floating-shape {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            animation: float 5s infinite ease-in-out;
+        }
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0); }
+        }
+        .shape1 { top: 20%; left: 10%; animation-delay: 0s; }
+        .shape2 { top: 50%; left: 30%; animation-delay: 2s; }
+        .shape3 { top: 80%; left: 70%; animation-delay: 4s; }
+        .shape4 { top: 40%; left: 80%; animation-delay: 3s; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="error-code">404</div>
+        <div class="error-message">Oops! Page Not Found</div>
+        <a href="{% url 'index' %}" class="back-home">Take Me Home</a>
+    </div>
+    <div class="floating-shape shape1"></div>
+    <div class="floating-shape shape2"></div>
+    <div class="floating-shape shape3"></div>
+    <div class="floating-shape shape4"></div>
+</body>
+</html>

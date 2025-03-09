@@ -1,0 +1,867 @@
+{% load static %}
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+
+    <!--- basic page needs
+    ================================================== -->
+    <meta charset="utf-8">
+    <title>Home</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- mobile specific metas
+    ================================================== -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSS
+    ================================================== -->
+    <link rel="stylesheet" href="{% static 'css1/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css1/vendor.css' %}">
+
+    <!-- script
+    ================================================== -->
+    <script src="{% static 'js1/modernizr.js' %}"></script>
+    <script defer src="{% static 'js1/fontawesome/all.min.js' %}"></script>
+
+    <!-- favicons
+    ================================================== -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images1/fav.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images1/fav.png' %}">
+    <link rel="manifest" href="{% static 'site.webmanifest' %}">
+
+</head>
+<style>
+    .s-about::before {
+    background-image: url('{% static "images1/dots_blue.svg" %}');
+}
+
+.s-hero__content h1::before {
+    background-image: url('{% static "images1/dots_blue.svg" %}');
+}
+
+</style>
+
+<body id="top">
+
+
+    <!-- preloader
+    ================================================== -->
+    <div id="preloader">
+        <div id="loader" class="dots-fade">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+
+
+    <!-- header
+    ================================================== -->
+    <header class="s-header">
+
+        <div class="s-header__logo">
+            <a href="index.html">
+                <img src="{% static 'images1/logo22.png' %}" alt="Homepage" style="width: 110px; height: 18px;">
+            </a>
+        </div>
+
+        <div class="s-header__content">
+    
+            <nav class="s-header__nav-wrap">
+                <ul class="s-header__nav">
+                    <li><a class="" href="{% url 'index' %}" title="Intro">Home</a></li>
+                    <li><a class="" href="{% url 'about' %}" title="About">About</a></li>
+                    <li><a class="" href="{% url 'portfolio' %}" title="Works">Works</a></li>
+                    <li><a class="" href="{% url 'blog' %}" title="About">Blogs</a></li>
+
+                    <li class="dropdown " style="color: #a09c9c;">Services
+    <ul class="dropdown-menu">
+        <li><a href="{% url 'web_development' %}">Web Development</a></li>
+        <li><a href="{% url 'it_solutions' %}">IT Solutions</a></li>
+        <li><a href="{% url 'branding' %}">Branding</a></li>
+        <li><a href="{% url 'digital_marketing' %}">Digital Marketing</a></li>
+        <li><a href="{% url 'advertising' %}">Advertising</a></li>
+        <li><a href="{% url 'trademark' %}">Trade Mark</a></li>
+    </ul>
+</li>
+
+                    
+<style>
+    /* Dropdown styling */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: black;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-radius: 5px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    min-width: 200px;
+    z-index: 1000;
+}
+
+/* Styling for dropdown items */
+.dropdown-menu li {
+    border-bottom: 1px solid #ddd;
+}
+
+.dropdown-menu li:last-child {
+    border-bottom: none;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 2px;
+    color: #a09c9c;
+    text-decoration: none;
+    transition: background 0.3s;
+}
+
+
+
+/* Show dropdown when hovering over the parent li */
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+</style>              
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+    let dropdowns = document.querySelectorAll(".dropdown > a");
+
+    dropdowns.forEach(function(dropdown) {
+        dropdown.addEventListener("click", function(event) {
+            event.preventDefault(); // Prevent default link behavior
+            let menu = this.nextElementSibling;
+            menu.style.display = menu.style.display === "block" ? "none" : "block";
+        });
+    });
+});
+
+</script>     
+                    
+                    <li><a class="" href="{% url 'contact' %}" title="About">Contacts</a></li>
+                </ul>
+            </nav> <!-- end s-header__nav-wrap -->
+
+            <!-- <a href="mailto:#0" class="btn btn--primary btn--small">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 0l-6 22-8.129-7.239 7.802-8.234-10.458 7.227-7.215-1.754 24-12zm-15 16.668v7.332l3.258-4.431-3.258-2.901z"/></svg>
+                Get In Touch
+            </a> -->
+
+        </div> <!-- end header-content -->
+
+        <a class="s-header__menu-toggle" href="#0"><span>Menu</span></a>
+
+    </header> <!-- end s-header -->
+
+
+    
+
+    <!-- hero
+
+    ================================================== -->
+  
+    <section id="hero" class="s-hero target-section">
+
+        <div class="s-hero__bg" style="background-image: url('{% static "images1/hero1.jpg" %}');">
+            <div class="gradient-overlay"></div>
+        </div>
+        <style>
+            @media screen and (max-width: 768px) {
+    .s-hero__content h1 {
+        font-size: 8.5rem; /* Reduce size for mobile */
+    }
+    
+    .s-hero__content {
+        padding: 30px 10px; /* Add more padding for spacing */
+    }
+}
+
+        </style>
+
+        <div class="row s-hero__content">
+            <div class="column">
+
+                <h1>Vynzora
+                </h1>
+                <div class="s-hero__content-about">
+
+                    <p>
+                        Tired of Being Invisible Online? <br> We Help You Stand Out! <br>
+                        Get a Free Digital Growth Plan
+                    </p>
+    
+                    <footer>
+                        <div class="s-hero__content-social">
+                            <a href="https://www.facebook.com/people/Vynzora/61566425547531/"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+                            <a href="https://x.com/i/flow/login?redirect_after_login=%2Fvynzora"><i class="fab fa-twitter" aria-hidden="true"></i></a> <!-- Updated Twitter to X -->
+                            <a href="https://www.instagram.com/vynzora/"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                            <a href="https://www.linkedin.com/company/vynzora/"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a> <!-- Changed Dribbble to LinkedIn -->
+                        </div>
+                    </footer>
+                    
+                </div>
+
+            </div>
+        </div>
+
+        <!-- <div class="s-hero__video">
+            <a class="s-hero__video-link" href="https://player.vimeo.com/video/117310401?color=01aef0&amp;title=0&amp;byline=0&amp;portrait=0" data-lity="">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M21 12l-18 12v-24z"/></svg>
+                <span class="s-hero__video-text">Play Video</span>
+            </a>
+        </div> -->
+
+        <div class="s-hero__scroll">
+            <a href="#about" class="s-hero__scroll-link smoothscroll">
+                Scroll Down
+            </a>
+        </div>
+
+    </section> <!-- end s-hero -->
+
+
+
+
+    <!-- about
+    ================================================== -->
+    <section id="about" class="s-about">
+        <div class="horizontal-line"></div>
+    
+        <div class="row">
+            <div class="column large-12">
+                <div class="section-title" data-num="01" data-aos="fade-up">
+                    <h3 class="h6">Why Choose Us</h3>
+                </div>
+            </div>
+    
+            <div class="column large-6 w-900-stack s-about__intro-text">
+                <h1 class="display-1" data-aos="fade-up">
+                    Empowering the Future with Intelligent AI Solutions
+                </h1>
+    
+                <p class="lead" data-aos="fade-up">
+                    At Vynzora, we harness the power of artificial intelligence, machine learning, and advanced automation to create intelligent digital solutions that redefine industries. Our expertise lies in developing scalable, secure, and AI-powered IT solutions that help businesses thrive in an era of digital transformation.
+                </p>
+    
+                <p class="lead" data-aos="fade-up">
+                    From AI-driven automation to intelligent data analytics, cloud computing, and cybersecurity, we enable businesses to unlock their full potential. At Vynzora, technology meets strategy, ensuring innovation aligns seamlessly with business objectives. Whether you're a startup or an enterprise, our tailored solutions help you stay ahead of the curve.
+                </p>
+            </div>
+    
+            <style>
+                .s-about__photo {
+                    background-image: url('{% static "images1/about-photo.jpg" %}');
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    background-size: cover;
+                    position: absolute;
+                    top: var(--vspace-0_5);
+                    right: var(--gutter-lg);
+                    left: var(--gutter-lg);
+                    bottom: var(--vspace-1);
+                }
+            </style>
+    
+            <div class="column large-6 w-900-stack s-about__photo-block">
+                <div class="s-about__photo" data-aos="fade-up"></div>
+            </div>
+        </div>
+    
+        <div class="row block-large-1-2 block-tab-full s-about__process item-list">
+            <div class="column item item-process" data-aos="fade-up">
+                <h3 class="item-title">Quality</h3>
+                <p>
+                    Innovation is at the core of Vynzora. We leverage cutting-edge AI, deep learning, and automation to transform businesses, making operations faster, smarter, and more efficient. Our research and development team continuously explores new technologies, predictive analytics, and AI-driven decision-making, ensuring our clients remain ahead in a rapidly evolving digital landscape.
+                </p>
+            </div>
+        
+            <div class="column item item-process" data-aos="fade-up">
+                <h3 class="item-title">Commitments</h3>
+                <p>
+                    Technology should be seamless, intuitive, and engaging. At Vynzora, we follow a user-first approach in every solution we develop. Whether it’s AI-powered platforms, web applications, or enterprise software, we ensure every product is visually appealing, easy to use, and tailored to real-world needs. By blending AI with human creativity, we craft experiences that truly make a difference.
+                </p>
+            </div>
+        
+            <div class="column item item-process" data-aos="fade-up">
+                <h3 class="item-title">Experience</h3>
+                <p>
+                    Businesses today need technology that grows with them. Vynzora builds scalable, AI-powered IT solutions that evolve with your company’s needs. Our expertise spans across AI integration, process automation, cloud computing, cybersecurity, and big data analytics, ensuring businesses have the right tools to scale operations efficiently and securely.
+                </p>
+            </div>
+        
+            <div class="column item item-process" data-aos="fade-up">
+                <h3 class="item-title">AI Integration</h3>
+                <p>
+                    Digital transformation is not just about adopting new technology—it’s about reshaping the way businesses operate. At Vynzora, we guide companies through their AI transformation journey, from strategy and implementation to optimization and continuous innovation. Our goal is to help businesses stay resilient, adaptive, and future-ready in a rapidly evolving digital world.
+                </p>
+                <a class="btn btn--primary h-full-width" href="{% url 'about' %}">Read More</a>
+            </div>
+        </div>
+        
+            
+        </div>               
+     
+    </section> <!-- end s-about -->
+    
+
+    <!-- services
+    ================================================== -->
+    <style>
+        .service-icon--product-design {
+            background-image: url("{% static 'images1/icons/services/icon-product-design_corrected.svg' %}");
+        }
+        
+        .service-icon--branding {
+            background-image: url("{% static 'images1/icons/services/icon-branding_corrected.svg' %}");
+        }
+        
+        .service-icon--frontend {
+            background-image: url("{% static 'images1/icons/services/icon-frontend_corrected.svg' %}");
+        }
+        
+        .service-icon--research {
+            background-image: url("{% static 'images1/icons/services/icon-research_corrected.svg' %}");
+        }
+        
+        .service-icon--illustration {
+            background-image: url("{% static 'images1/icons/services/icon-illustration_corrected.svg' %}");
+        }
+        
+        .service-icon--ecommerce {
+            background-image: url("{% static 'images1/icons/services/icon-ecommerce_corrected.svg' %}");
+        }
+    </style>
+    <section id="services" class="s-services">
+
+        <div class="row">
+            <div class="column large-12">
+                <div class="section-title" data-num="02" data-aos="fade-up">
+                    <h3 class="h6">What We Offer</h3>
+                </div>
+            </div>
+            <div class="column large-6 w-900-stack">
+                <h1 class="display-1" data-aos="fade-up">
+                    Transforming Businesses with AI-Driven IT Solutions
+                </h1>
+            </div>
+            <div class="column large-6 w-900-stack">
+                <p class="lead" data-aos="fade-up">
+                    We empower businesses with cutting-edge technology solutions that drive innovation, 
+                    enhance digital presence, and optimize operations. Our expertise spans multiple domains, 
+                    ensuring tailored strategies for growth and success.
+                </p>
+            </div>
+        </div>
+    
+        <div class="row block-large-1-2 block-tab-full s-services__services item-list">
+            <div class="column item item-service" data-aos="fade-up">
+                <a href="{% url 'advertising' %}"> <span class="service-icon service-icon--product-design"></span>
+                <h3 class="item-title">Advertising Services</h3>
+                <p>
+                    Unlock the power of data-driven advertising to maximize brand exposure and audience engagement. 
+                    Our targeted ad campaigns ensure high conversion rates and measurable results.
+                </p></a>
+            </div>
+            <div class="column item item-service" data-aos="fade-up">
+                <a href="{% url 'branding' %}"><span class="service-icon service-icon--branding"></span>
+                <h3 class="item-title">Branding Services</h3>
+                <p>
+                    Establish a strong brand identity with professional branding solutions. 
+                    From logo design to strategic positioning, we create a unique brand presence that resonates with your audience.
+                </p></a>
+            </div>
+            <div class="column item item-service" data-aos="fade-up">
+                <a href="{% url 'digital_marketing' %}"><span class="service-icon service-icon--frontend"></span>
+                <h3 class="item-title">Digital Marketing Services</h3>
+                <p>
+                    Boost your online visibility with expert digital marketing strategies, including SEO, content marketing, 
+                    social media management, and AI-powered automation.
+                </p></a>
+            </div>
+            <div class="column item item-service" data-aos="fade-up">
+                <a href="{% url 'trademark' %}"> <span class="service-icon service-icon--research"></span>
+                <h3 class="item-title">Trademark Services</h3>
+                <p>
+                    Protect your business identity with trademark registration and legal consultation. 
+                    We ensure your brand remains exclusive and safeguarded against infringement.
+                </p></a>
+            </div>
+            <div class="column item item-service" data-aos="fade-up">
+                <a href="{% url 'web_development' %}"> <span class="service-icon service-icon--illustration"></span>
+                <h3 class="item-title">Web Development Services</h3>
+                <p>
+                    Build high-performing websites that are fast, responsive, and optimized for user engagement. 
+                    Our developers craft custom solutions tailored to your business needs.
+                </p></a>
+            </div>
+            <div class="column item item-service" data-aos="fade-up">
+                <a href="{% url 'it_solutions' %}"> <span class="service-icon service-icon--ecommerce"></span>
+                <h3 class="item-title">IT Solutions</h3>
+                <p>
+                    Enhance business efficiency with scalable IT solutions, including cloud computing, AI integration, and cybersecurity. 
+                    Future-proof your operations with our expert technology support.
+                </p></a>
+            </div>
+        </div>
+    
+    </section> <!-- end s-services -->
+    
+
+    <section id="portfolio" class="s-portfolio">
+        <div class="row s-porfolio__top">
+            <div class="column large-6 w-900-stack">
+                <div class="section-title" data-num="03" data-aos="fade-up">
+                    <h3 class="h6">Recent Works</h3>
+                </div>
+            </div>
+            <div class="column large-6 w-900-stack">
+                <h1 class="display-1" data-aos="fade-up">
+                    Here are some of our projects we’ve done lately. Feel free to check them out.
+                </h1>
+            </div>
+        </div> 
+    
+        <div class="row s-portfolio__list block-large-1-2 block-tab-full collapse">
+            {% for project in projects %}
+            <div class="column" data-aos="fade-up">
+                <div class="folio-item">
+                    <div class="folio-item__thumb">
+                        <a class="folio-item__thumb-link" href="{{ project.project_image.url }}" title="{{ project.project_name }}" data-size="1050x700">
+                            <img src="{{ project.project_image.url }}" alt="{{ project.project_name }}">
+                        </a>
+                    </div>
+                    <div class="folio-item__info">
+                        <h4 class="folio-item__title">{{ project.project_name }}</h4>
+                    </div>
+                    {% if project.website_link %}
+                    <a href="{{ project.website_link }}" title="Project Link" type="url" class="folio-item__project-link">{{ project.project_name }}</a>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div> 
+
+        
+    </section>
+
+
+    <!-- <section id="portfolio" class="s-portfolio">
+        <div class="row s-portfolio__top">
+            <div class="column large-6 w-900-stack">
+                <div class="section-title" data-num="03" data-aos="fade-left">
+                    <h3 class="h6">BLOGS</h3>
+                </div>
+            </div>
+            <div class="column large-6 w-900-stack">
+                <h1 class="display-1" data-aos="fade-left">
+                    Here are some of our blogs we done lately. Feel free to check them out.
+                </h1>
+            </div>
+        </div>
+    
+        <div class="carousel" data-aos="fade-left">
+            <div class="carousel-container">
+                {% for blog in blogs %}
+                <div class="carousel-item">
+                    <div class="folio-item">
+                        <div class="folio-item__thumb">
+                            <a class="folio-item__thumb-link" href="{% url 'blog_details' blog.id %}" title="The Red Wheel" data-size="1050x700">
+                                <img src="{{ blog.image.url }}" alt="">
+                            </a>
+                        </div>
+                        <div class="folio-item__info">
+                           
+                        </div>
+                        <a href="{% url 'blog_details' blog.id %}" class="folio-item__project-link">{{ blog.name|truncatewords:5 }}</a>
+                    
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section> -->
+    
+    
+    <style>
+        .carousel {
+            overflow: hidden;
+            width: 100%;
+            position: relative;
+        }
+    
+        .carousel-container {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            align-items: stretch; 
+        }
+    
+        .carousel-item {
+            flex: 0 0 33.33%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+    
+        .folio-item {
+     
+            height: 100%; /* Ensure all items have equal height */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); */
+            /* border-radius: 8px; */
+        }
+    
+        .folio-item__thumb img {
+            width: 100%;
+            height: 400px; /* Set a fixed height for images */
+            object-fit: cover; /* Ensures consistent image scaling */
+            /* border-radius: 8px 8px 0 0; */
+        }
+    
+        .folio-item__info, 
+        .folio-item__caption, 
+        .folio-item__project-link {
+            padding: 10px;
+        }
+    
+        /* Responsive adjustments */
+        @media (max-width: 1024px) {
+            .carousel-item {
+                flex: 0 0 50%; /* Show 2 items on tablets */
+            }
+        }
+    
+        @media (max-width: 768px) {
+            .carousel-item {
+                flex: 0 0 100%; /* Show 1 item per view on small screens */
+            }
+        }
+    </style>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const carousel = document.querySelector(".carousel-container");
+            const items = document.querySelectorAll(".carousel-item");
+            let index = 0;
+            let itemWidth = items[0].offsetWidth;
+    
+            // Clone first few items for smooth infinite effect
+            items.forEach(item => {
+                let clone = item.cloneNode(true);
+                carousel.appendChild(clone);
+            });
+    
+            function updateWidth() {
+                itemWidth = items[0].offsetWidth;
+            }
+    
+            function moveCarousel() {
+                index++;
+                const offset = index * itemWidth;
+                carousel.style.transition = "transform 0.5s ease-in-out";
+                carousel.style.transform = `translateX(-${offset}px)`;
+    
+                if (index >= items.length / 2) {
+                    setTimeout(() => {
+                        carousel.style.transition = "none";
+                        carousel.style.transform = `translateX(0px)`;
+                        index = 0;
+                    }, 500);
+                }
+            }
+    
+            setInterval(moveCarousel, 3000);
+            window.addEventListener("resize", updateWidth);
+        });
+    </script>
+    
+    
+
+
+    
+
+    <section id="portfolio" class="section s-portfolio s-clients">
+
+        <div class="row s-porfolio__top">
+            <div class="column large-6 w-900-stack">
+                <div class="section-title" data-num="04" data-aos="fade-up">
+                    <h3 class="h6">Our Technologies</h3>
+                </div>
+            </div>
+            <div class="column large-6 w-900-stack">
+                <h1 class="display-1" data-aos="fade-up">
+                    Empowering Businesses with Next-Gen Technology Solutions
+                </h1>
+                
+            </div>
+        </div> <!-- end s-portfolio__top-->
+        <div class="row clients-outer">
+            
+            <div class="slider">
+                <div class="slide-track">
+                 {% for technology in technologies %}
+                    <div class="slide"><img src="{{ technology.logo.url }}" alt="{{ technology.name }}"  height="100" width="250"></div>
+                   {% endfor %}
+                </div>
+            </div>
+                    </div> <!-- end clients-outer -->
+        
+    </section> <!-- end s-portfolio -->
+
+
+    <style>
+     
+
+        .slider {
+            height: 100px;
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .slide-track {
+            display: flex;
+            width: calc(250px * 14);
+            animation: scroll 40s linear infinite;
+        }
+
+        .slide {
+            height: 100px;
+            width: 250px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-250px * 7)); }
+        }
+    </style>
+
+
+
+
+
+    <!-- clients
+    ================================================== -->
+    <section id="clients" class="section s-clients">
+        <div class="row s-clients__top">
+            <div class="column large-6 w-900-stack">
+                <div class="section-title" data-num="05" data-aos="fade-up">
+                    <h3 class="h6">Our Clients' Testimonials</h3>
+                </div>
+            </div>
+            <div class="column large-6 w-900-stack">
+                <h1 class="display-1" data-aos="fade-up">
+                    See what our clients say about our work and commitment to excellence.
+                </h1>
+            </div>
+        </div> <!-- end s-clients__top-->
+    
+        <div class="row testimonials collapse">
+            <div class="column large-12">
+                <div class="testimonial-slider" data-aos="fade-up">
+                    {% for review in reviews %}
+                    <div class="testimonial-slider__slide">
+                        <p>
+                            {{ review.review }}
+                        </p>
+                        <div class="testimonial-slider__author">
+                            <img src="{{ review.client_image.url }}" alt="{{ review.client_name }}" class="testimonial-slider__avatar" width="80" height="80">
+                            <cite class="testimonial-slider__cite">
+                                <strong>{{ review.client_name }}</strong>
+                                <span>{{ review.designation }}</span>
+                            </cite>
+                        </div>
+                    </div> 
+                    {% endfor %}
+                  
+                </div> <!-- end testimonial slider -->
+            </div>
+        </div>
+    </section>
+    
+     
+    <section id="services" class="s-services" style="margin-top: -300px;">
+        <div class="row">
+            <div class="column large-12">
+                <div class="section-title" data-num="06" data-aos="fade-up">
+                    <h3 class="h6">Our Clients</h3>
+                </div>
+            </div>
+            <div class="column large-6 w-900-stack" >
+                <p style="color: white;">We have collaborated with leading brands across various industries, delivering innovative solutions and remarkable success stories.</p>
+            </div>
+            <div class="column large-6 w-900-stack">
+                <p class="lead" data-aos="fade-up" style="color: white;">
+                    Our clients trust us for our expertise, commitment, and results-driven approach. We take pride in building long-lasting relationships with esteemed organizations worldwide.
+                </p>
+            </div>
+        </div>
+    
+        <!-- Logo Grid -->
+        <div class="logo-grid">
+            {% for client in client_logos %}
+            <div class="logo-item"><img src="{{ client.logo.url }}" alt="{{ client.name }}"></div>
+            {% endfor %}
+        </div>
+    
+        <style>
+            .logo-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adjusted minmax size for responsiveness */
+                gap: 10px; /* Reduced gap between logos */
+                justify-content: center;
+                align-items: center;
+                max-width: 1300px;
+                margin: 20px auto; /* Adjusted margin for centering */
+                padding: 20px 0;
+            }
+    
+            .logo-item {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                max-width: 100%; /* Ensures images do not overflow */
+            }
+    
+            .logo-item img {
+                max-width: 100%; /* Ensures images do not overflow */
+                height: auto;
+                object-fit: contain;
+            }
+    
+            @media screen and (max-width: 500px) {
+                .logo-item img {
+                    width: 100%; /* Full width on smaller screens */
+                }
+            }
+        </style>
+    </section>
+    
+
+    <!-- footer
+    ================================================== -->
+	<footer class="s-footer" style="background-color: black; padding: 40px 0;">
+		<div class="row row-y-top">
+			<div class="column large-8 medium-12">
+				<div class="row">
+					<!-- About VynZora Section -->
+					<div class="column large-7 tab-12 s-footer__block">
+						<img src="{% static 'images1/logo22.png' %}" alt="VynZora Logo">
+						<p style="color: white; font-size: 18px;">
+							VynZora drives business success with AI-powered solutions in advertising, web development, branding, and IT services.
+						</p>
+						<a href="https://wa.me/918590627934
+                        " class="btn h-full-width" 
+						   style="padding: 1px 20px; display: inline-block; 
+								  border-radius: 5px; font-weight: bold; text-decoration: none; background: white; color: black;">
+							Get Quote
+						</a>
+					</div>
+	
+					<!-- Quick Links Section -->
+					<div class="column large-5 tab-12 s-footer__block">
+						<h4 class="h6" style="color: aliceblue;">Quick Links</h4>
+						<ul class="s-footer__list" style="font-size: 18px;">
+							<li><a href="{% url 'index' %}">Home</a></li>
+							<li><a href="{% url 'about' %}">About Us</a></li>
+							<li><a href="{% url 'terms_and_conditions' %}">Term and Conditions</a></li>
+							<li><a href="{% url 'privacy_and_policy' %}">Privacy and Policy</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+	
+			<!-- Verify Certificate Section -->
+			<div class="column large-4 medium-12 s-footer__block">
+				<h4 style="color: white; " class="h6" >Verify Your Certificate</h4>
+				<div style="display: flex; align-items: center;">
+                    <form method="post" action="{% url 'index' %}" style="display: flex; gap: 10px;">
+                        {% csrf_token %}
+                        <input type="text" placeholder="Enter Certificate ID" name="id1" autocomplete="off"
+                               style="flex: 1; padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
+                               <input type="submit" value="Verify" 
+                               style="padding: 1px 15px; background: white; color: black; font-weight: bold; 
+                                       border-radius: 5px; cursor: pointer;">
+                    </form>
+                </div>
+                
+	
+				<!-- Copyright Section -->
+				<div class="ss-copyright" style="color: white; font-size: 14px; margin-top: -40px;">
+					<span>© 2025. All Rights Reserved.</span><br>
+					<span>Design by <a href="https://vynzora.com/"><strong>VynZora</strong></span></a>
+				</div>
+			</div>
+	
+			<div class="ss-go-top">
+				<a class="smoothscroll" title="Back to Top" href="#top" style="color: white;">Top</a>
+			</div>
+		</div>
+	</footer>
+	
+
+    <!-- photoswipe background
+    ================================================== -->
+    <div aria-hidden="true" class="pswp" role="dialog" tabindex="-1">
+
+        <div class="pswp__bg"></div>
+        <div class="pswp__scroll-wrap">
+
+            <div class="pswp__container">
+                <div class="pswp__item"></div>
+                <div class="pswp__item"></div>
+                <div class="pswp__item"></div>
+            </div>
+
+            <div class="pswp__ui pswp__ui--hidden">
+                <div class="pswp__top-bar">
+                    <div class="pswp__counter"></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button> <button class="pswp__button pswp__button--share" title=
+                    "Share"></button> <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button> <button class="pswp__button pswp__button--zoom" title=
+                    "Zoom in/out"></button>
+                    <div class="pswp__preloader">
+                        <div class="pswp__preloader__icn">
+                            <div class="pswp__preloader__cut">
+                                <div class="pswp__preloader__donut"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                    <div class="pswp__share-tooltip"></div>
+                </div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button> <button class="pswp__button pswp__button--arrow--right" title=
+                "Next (arrow right)"></button>
+                <div class="pswp__caption">
+                    <div class="pswp__caption__center"></div>
+                </div>
+            </div>
+
+        </div>
+
+    </div> <!-- end photoSwipe background -->
+
+
+    <!-- Java Script
+    ================================================== -->
+    <script src="{% static 'js1/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'js1/plugins.js' %}"></script>
+    <script src="{% static 'js1/main.js' %}"></script>
+
+</body>
+
+</html>

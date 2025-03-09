@@ -1,0 +1,45 @@
+{% extends "admin_pages/base.html" %}
+{% load static %}
+
+{% block content %}
+
+            <div class="container">
+              <div class="row justify-content-center">
+                <div class="col-md-6 grid-margin stretch-card">
+                  <div class="card">
+                    <div class="card-body">
+                      <h4 class="card-title">Update Project</h4>
+                      <!-- <p class="card-description">
+                        Basic form layout
+                      </p> -->
+                      <form class="forms-sample" method="POST" enctype="multipart/form-data"> {% csrf_token %}
+                        <div class="form-group">
+                          <label for="ProjectName">Project Name</label>
+                          <input type="text" class="form-control" id="ProjectName" name="project_name"  value="{{projects.project_name}}" placeholder="Project Name">
+                        </div>
+                        
+                        <div class="form-group">
+                          <label for="ProjectLink">Project Link</label>
+                          <input type="text" class="form-control" id="ProjectLink" name="website_link" value="{{projects.website_link}}" placeholder="Enter project link">
+                      </div>
+                      <div class="form-group">
+                        <label for="imageFile">Project Image</label> <br>
+                        {% if projects.project_image %}
+                            <img src="{{ projects.project_image.url }}" alt="Current Image" style="max-width: 100px; max-height: 100px;"><br>
+                            <input type="file" class="form-control-file mt-2" id="imageFile" name="project_image" accept="image/*">
+                        {% else %}
+                            <input type="file" class="form-control-file" id="imageFile" name="project_image" accept="image/*">
+                        {% endif %}
+                    </div>
+                  
+                        <button type="submit" class="btn btn-primary me-2">Submit</button>
+                        <!-- <button class="btn btn-light">Cancel</button> -->
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+          
+            {% endblock %}

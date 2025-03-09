@@ -1,0 +1,43 @@
+{% extends "admin_pages/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Add Team</h4>
+          <form class="forms-sample" method="POST" enctype="multipart/form-data"> {% csrf_token %}
+            <div class="form-group">
+              <label for="ClientName">Name</label>
+              <input type="text" class="form-control" id="ClientName" name="client_name" placeholder=" Name" required>
+            </div>
+            <div class="form-group">
+              <label for="designation">Designation</label>
+              <input type="text" class="form-control" id="designation" name="designation" placeholder="Designation">
+            </div>
+           
+          
+          <div class="form-group">
+            <label for="imageFile">Image</label>
+            <input type="file" class="form-control-file" id="imageFile" name="client_image" accept="image/*">
+        </div>
+
+     
+            <div class="form-check form-check-flat form-check-primary">
+              <label class="form-check-label">
+                <!-- <input type="checkbox" class="form-check-input">
+                Remember me -->
+              </label>
+            </div>
+            <button type="submit" class="btn btn-primary me-2">Submit</button>
+            <!-- <button class="btn btn-light">Cancel</button> -->
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

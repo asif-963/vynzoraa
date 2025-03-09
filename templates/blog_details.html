@@ -1,0 +1,653 @@
+{% load static %}
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+
+    <!--- basic page needs
+    ================================================== -->
+    <meta charset="utf-8">
+    <title>Home</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- mobile specific metas
+    ================================================== -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSS
+    ================================================== -->
+    <link rel="stylesheet" href="{% static 'css1/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css1/vendor.css' %}">
+
+    <!-- script
+    ================================================== -->
+    <script src="{% static 'js1/modernizr.js' %}"></script>
+    <script defer src="{% static 'js1/fontawesome/all.min.js' %}"></script>
+
+    <!-- favicons
+    ================================================== -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images1/fav.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images1/fav.png' %}">
+    <link rel="manifest" href="{% static 'site.webmanifest' %}">
+
+</head>
+<style>
+    .s-about::before {
+    background-image: url('{% static "images1/dots_blue.svg" %}');
+}
+
+.s-hero__content h1::before {
+    background-image: url('{% static "images1/dots_blue.svg" %}');
+}
+
+</style>
+
+<body id="top">
+
+
+    <!-- preloader
+    ================================================== -->
+    <div id="preloader">
+        <div id="loader" class="dots-fade">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+
+<style>
+    .s-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
+  padding: 10px 20px;
+  z-index: 1000; /* Ensure it stays on top */
+  transition: background 0.3s ease-in-out;
+}
+
+/* Add some space at the top of the page to prevent content from hiding behind the fixed header */
+body {
+  padding-top: 80px; /* Adjust based on header height */
+}
+
+/* Change background color on scroll */
+.s-header.scrolled {
+  background: rgba(0, 0, 0, 1); /* Fully opaque background */
+}
+
+</style>
+<script>
+    window.addEventListener("scroll", function () {
+  const header = document.querySelector(".s-header");
+  if (window.scrollY > 50) {
+    header.classList.add("scrolled");
+  } else {
+    header.classList.remove("scrolled");
+  }
+});
+
+</script>
+    <!-- header
+    ================================================== -->
+    <header class="s-header">
+
+      <div class="s-header__logo">
+          <a href="{% url 'index' %}">
+              <img src="{% static 'images1/logo22.png' %}" alt="Homepage" style="width: 110px; height: 18px;">
+          </a>
+      </div>
+
+      <div class="s-header__content">
+  
+          <nav class="s-header__nav-wrap">
+              <ul class="s-header__nav">
+                  <li><a class="" href="{% url 'index' %}" title="Intro">Home</a></li>
+                  <li><a class="" href="{% url 'about' %}" title="About">About</a></li>
+                  <li><a class="" href="{% url 'portfolio' %}" title="Works">Works</a></li>
+                  <li><a class="" href="{% url 'blog' %}" title="About">Blogs</a></li>
+
+                  <li class="dropdown " style="color: #a09c9c;">Services
+  <ul class="dropdown-menu">
+      <li><a href="{% url 'web_development' %}">Web Development</a></li>
+      <li><a href="{% url 'it_solutions' %}">IT Solutions</a></li>
+      <li><a href="{% url 'branding' %}">Branding</a></li>
+      <li><a href="{% url 'digital_marketing' %}">Digital Marketing</a></li>
+      <li><a href="{% url 'advertising' %}">Advertising</a></li>
+      <li><a href="{% url 'trademark' %}">Trade Mark</a></li>
+  </ul>
+</li>
+
+                  
+<style>
+  /* Dropdown styling */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: black;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-radius: 5px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  min-width: 200px;
+  z-index: 1000;
+}
+
+/* Styling for dropdown items */
+.dropdown-menu li {
+  border-bottom: 1px solid #ddd;
+}
+
+.dropdown-menu li:last-child {
+  border-bottom: none;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 2px;
+  color: #a09c9c;
+  text-decoration: none;
+  transition: background 0.3s;
+}
+
+
+
+/* Show dropdown when hovering over the parent li */
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+</style>              
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+  let dropdowns = document.querySelectorAll(".dropdown > a");
+
+  dropdowns.forEach(function(dropdown) {
+      dropdown.addEventListener("click", function(event) {
+          event.preventDefault(); // Prevent default link behavior
+          let menu = this.nextElementSibling;
+          menu.style.display = menu.style.display === "block" ? "none" : "block";
+      });
+  });
+});
+
+</script>     
+                  
+                  <li><a class="" href="{% url 'contact' %}" title="About">Contacts</a></li>
+              </ul>
+          </nav> <!-- end s-header__nav-wrap -->
+
+          <!-- <a href="mailto:#0" class="btn btn--primary btn--small">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 0l-6 22-8.129-7.239 7.802-8.234-10.458 7.227-7.215-1.754 24-12zm-15 16.668v7.332l3.258-4.431-3.258-2.901z"/></svg>
+              Get In Touch
+          </a> -->
+
+      </div> <!-- end header-content -->
+
+      <a class="s-header__menu-toggle" href="#0"><span>Menu</span></a>
+
+  </header> <!-- end s-header -->
+    
+
+    <!-- hero
+
+    ================================================== -->
+  
+    
+
+
+    <div class="container"  id="hero">
+        <div class="content">
+          <div class="section-indicator">
+            <div class="vertical-text">
+              <!-- <span>A.25</span>
+              <span class="divider"></span>
+              <span>NIT</span> -->
+            </div>
+            <h1 class="section-number">{{ blog.name }}</h1>
+          </div>
+          <div class="main-content">
+            <h2 class="title">{{ blog.name }}</h2>
+            <div class="subtitle">
+              <span>{{ blog.created_date|date:"F j, Y" }}</span>
+              <div class="underline"></div>
+            </div>
+            <p class="description">
+              {{ blog.description|truncatewords:10|safe }}
+            </p>
+          </div>
+        </div>
+        <div class="image-container">
+        </div>
+      </div>
+
+      <style>
+        @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background-color: #000;
+  color: #fff;
+  overflow-x: hidden;
+}
+
+
+
+.container {
+  position: relative;
+  width: 100%;
+  /* height: 100vh; */
+  display: flex;
+  overflow: hidden;
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  padding: 5% 8%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.section-indicator {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+}
+
+.vertical-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+  color: rgba(255, 255, 255, 0.6);
+  margin-right: 1rem;
+}
+
+.divider {
+  width: 1px;
+  height: 2rem;
+  background-color: rgba(255, 255, 255, 0.3);
+  margin: 0.5rem 0;
+}
+
+.section-number {
+  font-size: 5rem;
+  font-weight: 300;
+  line-height: 0.8;
+  
+  color: rgba(255, 255, 255, 0.15);
+}
+
+.main-content {
+  max-width: 500px;
+  margin-top: 2rem;
+}
+
+.title {
+  font-size: 5.1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  letter-spacing: -0.5px;
+  width: 1000px;
+}
+
+.subtitle {
+  margin-bottom: 2rem;
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+.underline {
+  width: 180px;
+  height: 2px;
+  background: linear-gradient(90deg, #e6a272, transparent);
+  margin-top: 0.5rem;
+}
+
+.description {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 450px;
+}
+
+.image-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("{% static 'images1/hero1.jpg' %}");
+  background-size: cover;
+  background-position: center;
+  z-index: 1;
+  opacity: 0.9;
+}
+
+/* Add a gradient overlay to enhance text readability */
+.image-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.8) 0%,
+    rgba(0, 0, 0, 0.4) 50%,
+    rgba(0, 0, 0, 0.2) 100%
+  );
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .section-number {
+    font-size: 5rem;
+  }
+
+  .title {
+    font-size: 2.5rem;
+  }
+
+  .main-content {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .content {
+    padding: 5% 5%;
+  }
+
+  .section-number {
+    font-size: 4rem;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+}
+
+        </style>
+
+        <script>
+            // Add subtle parallax effect on mouse movement
+document.addEventListener("mousemove", (e) => {
+  const imageContainer = document.querySelector(".image-container");
+  const xAxis = (window.innerWidth / 2 - e.pageX) / 50;
+  const yAxis = (window.innerHeight / 2 - e.pageY) / 50;
+
+  imageContainer.style.transform = `translateX(${xAxis}px) translateY(${yAxis}px)`;
+});
+
+// Add fade-in animation on page load
+document.addEventListener("DOMContentLoaded", () => {
+  const content = document.querySelector(".content");
+  const imageContainer = document.querySelector(".image-container");
+
+  // Set initial opacity
+  content.style.opacity = "0";
+  imageContainer.style.opacity = "0";
+
+  // Add transition property
+  content.style.transition = "opacity 1.5s ease";
+  imageContainer.style.transition = "opacity 2s ease";
+
+  // Trigger animation after a short delay
+  setTimeout(() => {
+    content.style.opacity = "1";
+    imageContainer.style.opacity = "0.9";
+  }, 300);
+});
+
+            </script>
+
+
+
+<section id="styles" class="s-styles" style="background-color: #18141c;">
+
+   
+
+    <div class="row">
+        <!-- Left Side: Blog Details -->
+        <div class="column large-8 tab-12">
+            <article class="blog-details">
+                <img src="{{ blog.image.url }}" alt="{{ blog.name }}" class="blog-image">
+                <h2 class="blog-title">{{ blog.name }}</h2>
+                <p class="blog-description">
+                  {{ blog.description|safe }}
+                </p>
+            </article>
+        </div>
+
+
+    
+        <!-- Right Side: Recent Blogs -->
+        <div class="column large-4 tab-12">
+          <h3>Recent Blogs</h3>
+          <ul class="recent-blogs">
+              {% for recent_post in recent_posts %}
+              <li>
+                  <a href="{% url 'blog_details' recent_post.id %}">
+                      <img src="{{ recent_post.image.url }}" alt="{{ recent_post.name }}" class="recent-img">
+                      <div class="recent-info">
+                          <a href="{% url 'blog_details' recent_post.id %}" style="color: #fff;">{{ recent_post.name }}</a>
+                          <p class="blog-date">{{ recent_post.created_date|date:"F j, Y" }}</p>
+                      </div>
+                  </a>
+              </li>
+              {% empty %}
+              <li>No recent posts available.</li>
+              
+              {% endfor %}
+          </ul>
+      </div>
+      
+    </div>
+<style>
+    .blog-details {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.blog-image {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.blog-title {
+    font-size: 24px;
+    margin-top: 15px;
+}
+
+.blog-description {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.6;
+}
+
+.recent-blogs {
+    list-style: none;
+    padding: 0;
+}
+
+.recent-blogs li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.recent-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.recent-info a {
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
+}
+
+.blog-date {
+    font-size: 12px;
+    color: #777;
+}
+
+</style>    
+   
+
+    
+
+
+</section> <!-- end s-styles -->
+
+
+   
+
+    
+ <!-- footer
+    ================================================== -->
+    <footer class="s-footer" style="background-color: black; padding: 40px 0;">
+      <div class="row row-y-top">
+        <div class="column large-8 medium-12">
+          <div class="row">
+            <!-- About VynZora Section -->
+            <div class="column large-7 tab-12 s-footer__block">
+              <img src="{% static 'images1/logo22.png' %}" alt="VynZora Logo">
+              <p style="color: white; font-size: 18px;">
+                VynZora drives business success with AI-powered solutions in advertising, web development, branding, and IT services.
+              </p>
+              <a href="https://wa.me/918590627934" class="btn h-full-width" 
+                 style="padding: 1px 20px; display: inline-block; 
+                    border-radius: 5px; font-weight: bold; text-decoration: none; background: white; color: black;">
+                Get Quote
+              </a>
+            </div>
+    
+            <!-- Quick Links Section -->
+            <div class="column large-5 tab-12 s-footer__block">
+              <h4 class="h6" style="color: aliceblue;">Quick Links</h4>
+              <ul class="s-footer__list" style="font-size: 18px;">
+                <li><a href="{% url 'index' %}">Home</a></li>
+                <li><a href="{% url 'about' %}">About Us</a></li>
+                <li><a href="{% url 'terms_and_conditions' %}">Terms & Conditions</a></li>
+                <li><a href="{% url 'privacy_and_policy' %}">Privacy & Policy</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+    
+        <!-- Verify Certificate Section -->
+        <div class="column large-4 medium-12  s-footer__block">
+          <h4 style="color: white;  " class="h6">Contact Us</h4>
+          
+          <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 10px; color: white;">
+      
+            <p style="margin: 0; font-size: 18px;">
+                <i class="fas fa-phone"></i> <a href="tel:+918590627934" style="color: white; text-decoration: none;">+91 8590627934</a>
+            </p>
+            <p style="margin: 0; font-size: 18px;">
+                <i class="fas fa-envelope"></i> <a href="mailto:support@vynzora.com" style="color: white; text-decoration: none;">support@vynzora.com</a>
+            </p>
+            
+            <div style="display: flex; gap: 15px;">
+                <a href="https://www.facebook.com/people/Vynzora/61566425547531/" target="_blank" style="color: white; font-size: 24px;"><i class="fab fa-facebook"></i></a>
+                <a href="https://x.com/i/flow/login?redirect_after_login=%2Fvynzora" target="_blank" style="color: white; font-size: 24px;"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.linkedin.com/company/vynzora/" target="_blank" style="color: white; font-size: 24px;"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.instagram.com/vynzora/" target="_blank" style="color: white; font-size: 24px;"><i class="fab fa-instagram"></i></a>
+            </div>
+        
+        </div>
+        
+        
+      
+          <!-- Copyright Section -->
+          <div class="ss-copyright" style="color: white; font-size: 14px;">
+              <span>© 2025. All Rights Reserved.</span><br>
+             <span>Design by  <a href="https://vynzora.com/"><strong>VynZora</strong></span></a>
+          </div>
+      </div>
+      
+    
+        <div class="ss-go-top">
+          <a class="smoothscroll" title="Back to Top" href="#top" style="color: white;">Top</a>
+        </div>
+      </div>
+    </footer>
+    
+
+    <!-- photoswipe background
+    ================================================== -->
+    <div aria-hidden="true" class="pswp" role="dialog" tabindex="-1">
+
+        <div class="pswp__bg"></div>
+        <div class="pswp__scroll-wrap">
+
+            <div class="pswp__container">
+                <div class="pswp__item"></div>
+                <div class="pswp__item"></div>
+                <div class="pswp__item"></div>
+            </div>
+
+            <div class="pswp__ui pswp__ui--hidden">
+                <div class="pswp__top-bar">
+                    <div class="pswp__counter"></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button> <button class="pswp__button pswp__button--share" title=
+                    "Share"></button> <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button> <button class="pswp__button pswp__button--zoom" title=
+                    "Zoom in/out"></button>
+                    <div class="pswp__preloader">
+                        <div class="pswp__preloader__icn">
+                            <div class="pswp__preloader__cut">
+                                <div class="pswp__preloader__donut"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                    <div class="pswp__share-tooltip"></div>
+                </div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button> <button class="pswp__button pswp__button--arrow--right" title=
+                "Next (arrow right)"></button>
+                <div class="pswp__caption">
+                    <div class="pswp__caption__center"></div>
+                </div>
+            </div>
+
+        </div>
+
+    </div> <!-- end photoSwipe background -->
+
+
+    <!-- Java Script
+    ================================================== -->
+    <script src="{% static 'js1/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'js1/plugins.js' %}"></script>
+    <script src="{% static 'js1/main.js' %}"></script>
+
+</body>
+
+</html>
+
+
+

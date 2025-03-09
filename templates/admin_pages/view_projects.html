@@ -1,0 +1,56 @@
+{% extends "admin_pages/base.html" %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<div class="col-lg-12 stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Projects</h4>
+            <div class="table-responsive">
+                <table class="table table-bordered" style="width: 1400px;">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>Project Name</th>
+                            <th>Project Link</th>
+                            <th>Project Image</th>
+                            <th>Update</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for project in projects %}
+                        <tr>
+                            <td style="width: 200px;">{{ project.project_name }}</td>
+                            <td style="width: 250px;"> <a href="{{ project.website_link }}" target="_blank">{{ project.website_link }}</a> </td>
+                            <td style="width: 150px;">
+                                {% if project.project_image %}
+                                    <img src="{{ project.project_image.url }}" alt="Project Image" style="width: 80px; height: 80px;">
+                                {% else %}
+                                    <p>No image available</p>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <a href="{% url 'update_projects' project.id %}" class="btn btn-warning btn-sm">
+                                    <i class="mdi mdi-cloud-upload" aria-hidden="true"></i> Update
+                                </a>
+                            </td>
+                            <td>
+                                <a href="{% url 'delete_projects' project.id %}" class="btn btn-danger btn-sm">
+                                    <i class="mdi mdi-delete" aria-hidden="true"></i> Delete
+                                </a>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="5" class="text-center">No projects available.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

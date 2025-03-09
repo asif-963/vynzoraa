@@ -1,0 +1,62 @@
+{% extends "admin_pages/base.html" %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<div class="col-lg-12 stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">View Uploaded Certificates</h4>
+            <div class="table-responsive">
+                <table class="table table-bordered" style="width: 100%;">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Join Date</th>
+                            <th>Designation</th>
+                            <th>Certificate</th>
+                            <th>Update</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for certificate in certificates %}
+                        <tr>
+                            <td>{{ certificate.id1 }}</td>
+                            <td>{{ certificate.name }}</td>
+                            <td>{{ certificate.email }}</td>
+                            <td>{{ certificate.join_date }}</td>
+                            <td>{{ certificate.designation }}</td>
+                            <td>
+                                {% if certificate.pdf_file %}
+                                <a href="{{ certificate.pdf_file.url }}" target="_blank" class="btn btn-primary btn-sm">View Certificate</a>
+                                {% else %}
+                                <p>No certificate found</p>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <a href="{% url 'update_certificates' certificate.id %}" class="btn btn-warning btn-sm">
+                                    <i class="mdi mdi-cloud-upload"></i> Update
+                                </a>
+                            </td>
+                            <td>
+                                <a href="{% url 'delete_certificates' certificate.id %}" class="btn btn-danger btn-sm">
+                                    <i class="mdi mdi-delete"></i> Delete
+                                </a>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="8" class="text-center">No certificates available.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
