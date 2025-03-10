@@ -171,82 +171,69 @@
 
 
     
-<!-- Hero Section -->
-<section id="hero" class="s-hero target-section">
 
-    <!-- Hero Background -->
-    <div class="s-hero__bg" style="background-image: url('{% static "images1/hero1.jpg" %}');">
-        <div class="gradient-overlay"></div>
-    </div>
+    <!-- hero
 
-    <!-- Hero Content -->
-    <div class="row s-hero__content">
-        <div class="column">
-            <h1>Vynzora</h1>
-            <div class="s-hero__content-about">
-                <p>
-                    Tired of Being Invisible Online? <br> We Help You Stand Out! <br>
-                    Get a Free Digital Growth Plan
-                </p>
+    ================================================== -->
+  
+    <section id="hero" class="s-hero target-section">
 
-                <footer>
-                    <div class="s-hero__content-social">
-                        <a href="https://www.facebook.com/people/Vynzora/61566425547531/"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
-                        <a href="https://x.com/i/flow/login?redirect_after_login=%2Fvynzora"><i class="fab fa-twitter" aria-hidden="true"></i></a>
-                        <a href="https://www.instagram.com/vynzora/"><i class="fab fa-instagram" aria-hidden="true"></i></a>
-                        <a href="https://www.linkedin.com/company/vynzora/"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
-                    </div>
-                </footer>
+        <div class="s-hero__bg" style="background-image: url('{% static "images1/hero1.jpg" %}');">
+            <div class="gradient-overlay"></div>
+        </div>
+        <style>
+            @media screen and (max-width: 768px) {
+    .s-hero__content h1 {
+        font-size: 8.5rem; /* Reduce size for mobile */
+    }
+    
+    .s-hero__content {
+        padding: 30px 10px; /* Add more padding for spacing */
+    }
+}
+
+        </style>
+
+        <div class="row s-hero__content">
+            <div class="column">
+
+                <h1>Vynzora
+                </h1>
+                <div class="s-hero__content-about">
+
+                    <p>
+                        Tired of Being Invisible Online? <br> We Help You Stand Out! <br>
+                        Get a Free Digital Growth Plan
+                    </p>
+    
+                    <footer>
+                        <div class="s-hero__content-social">
+                            <a href="https://www.facebook.com/people/Vynzora/61566425547531/"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+                            <a href="https://x.com/i/flow/login?redirect_after_login=%2Fvynzora"><i class="fab fa-twitter" aria-hidden="true"></i></a> <!-- Updated Twitter to X -->
+                            <a href="https://www.instagram.com/vynzora/"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                            <a href="https://www.linkedin.com/company/vynzora/"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a> <!-- Changed Dribbble to LinkedIn -->
+                        </div>
+                    </footer>
+                    
+                </div>
+
             </div>
         </div>
-    </div>
 
-    <!-- Scroll Down Button -->
-    <div class="s-hero__scroll">
-        <a href="#about" class="s-hero__scroll-link smoothscroll">Scroll Down</a>
-    </div>
+        <!-- <div class="s-hero__video">
+            <a class="s-hero__video-link" href="https://player.vimeo.com/video/117310401?color=01aef0&amp;title=0&amp;byline=0&amp;portrait=0" data-lity="">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M21 12l-18 12v-24z"/></svg>
+                <span class="s-hero__video-text">Play Video</span>
+            </a>
+        </div> -->
 
-</section>
+        <div class="s-hero__scroll">
+            <a href="#about" class="s-hero__scroll-link smoothscroll">
+                Scroll Down
+            </a>
+        </div>
 
-<!-- CSS for Animation -->
-<style>
-    /* Keyframe Animation */
-    @keyframes fadeInUp {
-        0% {
-            opacity: 0;
-            transform: translateY(50px); /* Moves content up from 50px */
-        }
-        100% {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    /* Apply animation to hero content */
-    .s-hero__content {
-        opacity: 0; /* Initially hidden */
-        animation: fadeInUp 1.5s ease-out forwards; /* Play animation */
-    }
-
-    /* Mobile Adjustments */
-    @media screen and (max-width: 768px) {
-        .s-hero__content h1 {
-            font-size: 4rem; /* Adjust for smaller screens */
-        }
-        
-        .s-hero__content {
-            padding: 30px 10px;
-        }
-    }
-</style>
-
-<!-- JavaScript to Ensure Animation Triggers on Page Load -->
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        document.querySelector(".s-hero__content").style.opacity = "1";
-    });
-</script>
-
+    </section> <!-- end s-hero -->
 
 
 

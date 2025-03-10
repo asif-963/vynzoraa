@@ -1,89 +1,119 @@
 {% load static %}
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 Not Found</title>
+    <title>404 - Page Not Found!</title>
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images1/fav.png' %}">
     <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images1/fav.png' %}">
     <style>
-        body, html {
+        body {
             margin: 0;
             padding: 0;
-            height: 100%;
-            background: linear-gradient(135deg, #1d2d50, #243fa2);
+            background-color: #000;
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            color: #fff;
-            font-family: 'Arial', sans-serif;
             overflow: hidden;
+            cursor: none;
+            flex-direction: column;
         }
+
         .container {
+            position: relative;
             text-align: center;
         }
-        .error-code {
-            font-size: 120px;
-            font-weight: bold;
-            color: #fff;
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-            animation: glow 1.5s infinite alternate;
+
+        .text-404 {
+            font-size: 180px;
+            font-family: Arial, sans-serif;
+            color: #333;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+            user-select: none;
         }
-        .error-message {
-            font-size: 24px;
-            margin-bottom: 20px;
+
+        .message {
+            color: #bbb;
+            font-family: Arial, sans-serif;
+            font-size: 22px;
+            margin-top: -20px;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
         }
-        .back-home {
+
+        .home-button {
             display: inline-block;
-            padding: 15px 30px;
-            background: #fff;
-            color: #243fa2;
-            border-radius: 30px;
-            text-decoration: none;
+            font-family: Arial, sans-serif;
+            margin-top: 20px;
+            padding: 12px 24px;
+            background-color: #bbb;
+            color: black;
             font-size: 18px;
-            transition: background 0.3s, color 0.3s;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
         }
-        .back-home:hover {
-            background: #243fa2;
-            color: #fff;
+
+        .home-button:hover {
+            background-color: #bbb;
         }
-        @keyframes glow {
-            from {
-                text-shadow: 0 0 10px #243fa2, 0 0 20px #243fa2, 0 0 30px #243fa2, 0 0 40px #243fa2, 0 0 50px #243fa2, 0 0 60px #243fa2, 0 0 70px #243fa2;
-            }
-            to {
-                text-shadow: 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #fff, 0 0 50px #fff, 0 0 60px #fff, 0 0 70px #fff, 0 0 80px #fff;
-            }
-        }
-        .floating-shape {
-            position: absolute;
-            width: 50px;
-            height: 50px;
-            background: rgba(255, 255, 255, 0.2);
+
+        .light {
+            position: fixed;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, 
+                rgba(255,255,255,0.15) 0%, 
+                rgba(255,255,255,0.1) 20%, 
+                rgba(255,255,255,0.05) 40%, 
+                transparent 70%);
             border-radius: 50%;
-            animation: float 5s infinite ease-in-out;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            mix-blend-mode: screen;
         }
-        @keyframes float {
-            0% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-            100% { transform: translateY(0); }
-        }
-        .shape1 { top: 20%; left: 10%; animation-delay: 0s; }
-        .shape2 { top: 50%; left: 30%; animation-delay: 2s; }
-        .shape3 { top: 80%; left: 70%; animation-delay: 4s; }
-        .shape4 { top: 40%; left: 80%; animation-delay: 3s; }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="error-code">404</div>
-        <div class="error-message">Oops! Page Not Found</div>
-        <a href="{% url 'index' %}" class="back-home">Take Me Home</a>
+        <div class="text-404">404</div>
+        <div class="message">Page Not Found!</div>
+        <a href="{% url 'index' %}" class="home-button">Take Me Home</a>
     </div>
-    <div class="floating-shape shape1"></div>
-    <div class="floating-shape shape2"></div>
-    <div class="floating-shape shape3"></div>
-    <div class="floating-shape shape4"></div>
+    <div class="light"></div>
+
+    <script>
+        const light = document.querySelector('.light');
+        const text = document.querySelector('.text-404');
+        
+        document.addEventListener('mousemove', (e) => {
+            light.style.left = e.clientX + 'px';
+            light.style.top = e.clientY + 'px';
+            
+            const rect = text.getBoundingClientRect();
+            const textCenter = {
+                x: rect.left + rect.width / 2,
+                y: rect.top + rect.height / 2
+            };
+            
+            const distance = Math.sqrt(
+                Math.pow(e.clientX - textCenter.x, 2) + 
+                Math.pow(e.clientY - textCenter.y, 2)
+            );
+            
+            const brightness = Math.max(0.3, 1 - (distance / 500));
+            text.style.color = `rgba(150, 150, 150, ${brightness})`;
+        });
+
+        document.addEventListener('touchmove', (e) => {
+            e.preventDefault();
+            const touch = e.touches[0];
+            light.style.left = touch.clientX + 'px';
+            light.style.top = touch.clientY + 'px';
+        });
+    </script>
 </body>
 </html>
