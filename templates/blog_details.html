@@ -7,8 +7,9 @@
     ================================================== -->
     <meta charset="utf-8">
     <title>{{ blog.name }}</title>
-    <meta name="description" content=" {{ blog.description|truncatewords:100|safe }}">
+    <meta name="description" content="{{ blog.description|striptags|truncatewords:100 }}">
     <meta name="author" content="Vynzora">
+    
 
     <!-- mobile specific metas
     ================================================== -->
