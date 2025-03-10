@@ -24,9 +24,10 @@ def index(request):
         id1 = request.POST.get('id1')
         pdf_url = generate_certificate_url(id1)
         if pdf_url:
+            messages.success(request, "Your certificate has been successfully generated!")
             return render(request, 'certificate.html', {'pdf_url': pdf_url})
         else:
-            messages.error(request, ("Certificate not found for the provided ID!!!"))
+            messages.error(request, "Oops! No certificate found for the provided ID. Please try again.")
             return redirect('index')
     return render(request, 'index.html',{'technologies': technologies, 'client_logos' : client_logos, 'reviews':reviews,'projects': projects})
 
