@@ -13,6 +13,11 @@
     ================================================== -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    
+      <!-- Toast -->
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
     <!-- CSS
     ================================================== -->
     <link rel="stylesheet" href="{% static 'css1/styles.css' %}">
@@ -397,9 +402,9 @@ document.addEventListener("DOMContentLoaded", () => {
    
   </div>
   <br>
-  <div style="margin-top: 7px; text-align: center;">
+  <!-- <div style="margin-top: 7px; text-align: center;">
       <a class="btn btn--primary h-full-width" href="{{ pdf_url }}" download>Download PDF</a>
-  </div>
+  </div> -->
 </div>
 
           
@@ -571,7 +576,78 @@ document.addEventListener("DOMContentLoaded", () => {
   
       </div> <!-- end photoSwipe background -->
   
-  
+        
+<!-- Toast -->
+ 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script>
+  {% if messages %}
+      {% for message in messages %}
+          toastr.success("{{ message }}");
+      {% endfor %}
+  {% endif %}
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  toastr.options = {
+      "closeButton": true,
+      "debug": false,
+      "newestOnTop": false,
+      "progressBar": true,
+      "positionClass": "toast-top-right",
+      "preventDuplicates": false,
+      "onclick": null,
+      "showDuration": "300",
+      "hideDuration": "1000",
+      "timeOut": "5000",
+      "extendedTimeOut": "1000",
+      "showEasing": "swing",
+      "hideEasing": "linear",
+      "showMethod": "fadeIn",
+      "hideMethod": "fadeOut"
+  };
+
+});
+</script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+
+<script>
+$(window).on('load', function() {
+  $(".page-loader").fadeOut("slow");
+});
+</script>
+
+<style>
+    /* Customize the toast background color and text color */
+    #toast-container > .toast {
+        background-color: #243fa2 !important; /* Set the background color */
+        color: white !important; /* Set the text color */
+    }
+    
+    /* Customize the title color inside the toast */
+    #toast-container > .toast .toast-title {
+        color: white !important;
+    }
+    
+    /* Customize the message color inside the toast */
+    #toast-container > .toast .toast-message {
+        color: white !important;
+    }
+    
+    /* Customize the progress bar color */
+    #toast-container > .toast.toast-success {
+        border-color: #243fa2 !important; /* Match the border to background */
+    }
+    
+    #toast-container > .toast .toast-progress {
+        background-color: white !important; /* Progress bar color */
+    }
+    </style>
+    
+<!-- Toast -->
       <!-- Java Script
       ================================================== -->
       <script src="{% static 'js1/jquery-3.2.1.min.js' %}"></script>

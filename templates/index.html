@@ -6,9 +6,9 @@
     <!--- basic page needs
     ================================================== -->
     <meta charset="utf-8">
-    <title>Home</title>
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <title>Vynzora Kochi | Expert Digital Solutions & IT Services</title>
+    <meta name="description" content="Vynzora, a leading company in Kochi, offers expert digital solutions, including web design, branding, SEO & marketing to grow your business online.">
+    <meta name="author" content="Vynzora">
 
     <!-- mobile specific metas
     ================================================== -->
@@ -18,6 +18,11 @@
     ================================================== -->
     <link rel="stylesheet" href="{% static 'css1/styles.css' %}">
     <link rel="stylesheet" href="{% static 'css1/vendor.css' %}">
+
+      <!-- Toast -->
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+  <!-- Toast CD -->
 
     <!-- script
     ================================================== -->
@@ -261,7 +266,7 @@
     
             <style>
                 .s-about__photo {
-                    background-image: url('{% static "images1/about-photo.jpg" %}');
+                    background-image: url('{% static "images1/about1.jpg" %}');
                     background-repeat: no-repeat;
                     background-position: center;
                     background-size: cover;
@@ -363,10 +368,19 @@
                 </p>
             </div>
         </div>
+        <style>
+            .item-service a{
+                color: white;
+            }
+            .item-service:hover h3,
+            .item-service:hover p {
+                color: #243fa2;
+            }
+        </style>
     
         <div class="row block-large-1-2 block-tab-full s-services__services item-list">
             <div class="column item item-service" data-aos="fade-up">
-                <a href="{% url 'advertising' %}"> <span class="service-icon service-icon--product-design"></span>
+                <a href="{% url 'advertising' %}" > <span class="service-icon service-icon--product-design"></span>
                 <h3 class="item-title">Advertising Services</h3>
                 <p>
                     Unlock the power of data-driven advertising to maximize brand exposure and audience engagement. 
@@ -723,7 +737,7 @@
         <style>
             .logo-grid {
                 display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adjusted minmax size for responsiveness */
+                grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); /* Adjusted minmax size for responsiveness */
                 gap: 10px; /* Reduced gap between logos */
                 justify-content: center;
                 align-items: center;
@@ -855,7 +869,78 @@
 
     </div> <!-- end photoSwipe background -->
 
+    
+<!-- Toast -->
+ 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script>
+  {% if messages %}
+      {% for message in messages %}
+          toastr.error("{{ message }}");
+      {% endfor %}
+  {% endif %}
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  toastr.options = {
+      "closeButton": true,
+      "debug": false,
+      "newestOnTop": false,
+      "progressBar": true,
+      "positionClass": "toast-top-right",
+      "preventDuplicates": false,
+      "onclick": null,
+      "showDuration": "300",
+      "hideDuration": "1000",
+      "timeOut": "5000",
+      "extendedTimeOut": "1000",
+      "showEasing": "swing",
+      "hideEasing": "linear",
+      "showMethod": "fadeIn",
+      "hideMethod": "fadeOut"
+  };
 
+});
+</script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+
+<script>
+$(window).on('load', function() {
+  $(".page-loader").fadeOut("slow");
+});
+</script>
+
+<style>
+    /* Customize the toast background color and text color */
+    #toast-container > .toast {
+        background-color: #243fa2 !important; /* Set the background color */
+        color: white !important; /* Set the text color */
+    }
+    
+    /* Customize the title color inside the toast */
+    #toast-container > .toast .toast-title {
+        color: white !important;
+    }
+    
+    /* Customize the message color inside the toast */
+    #toast-container > .toast .toast-message {
+        color: white !important;
+    }
+    
+    /* Customize the progress bar color */
+    #toast-container > .toast.toast-success {
+        border-color: #243fa2 !important; /* Match the border to background */
+    }
+    
+    #toast-container > .toast .toast-progress {
+        background-color: white !important; /* Progress bar color */
+    }
+    </style>
+    
+<!-- Toast -->
     <!-- Java Script
     ================================================== -->
     <script src="{% static 'js1/jquery-3.2.1.min.js' %}"></script>
