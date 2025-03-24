@@ -1,0 +1,76 @@
+{% extends "admin_pages/base.html" %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<div class="col-lg-12 stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Job Details</h4>
+            <div class="table-responsive">
+                <table class="table table-bordered" style="width: 4000px;">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>Job Position</th>
+                            <th>Job Type</th>
+                            <th>Company Name</th>
+                            <th>Location</th>
+                            <th>Salary</th>
+                            <th>Job Details</th>
+                            <th>Posted Date</th>
+                            <th>End Date</th>
+                            <th>Post End Date</th>
+                            <th>Update</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for job_details in job_details %}
+                        <tr>
+                            <td>{{ job_details.job_position }}</td>
+                            <td>{{ job_details.job_type }}</td>
+                            <td>{{ job_details.company_name }}</td>
+                            <td>{{ job_details.place }}</td>
+                            <td>{{ job_details.salary }}</td>
+                            <td style="max-width: 400px; word-wrap: break-word; white-space: normal;">
+                                {{ job_details.job_details | safe }}
+                            </td>
+                            <td>{{ job_details.posted_date }}</td>
+                            <td>{{ job_details.end_date }}</td>
+                            <td>{{ job_details.post_end_date }}</td>
+                            <td>
+                                <a href="{% url 'update_job_details' job_details.id  %}" class="btn btn-warning btn-sm">
+                                    <i class="mdi mdi-cloud-upload"></i> Update
+                                </a>
+                            </td>
+                            <td>
+                                <a href="{% url 'delete_job_details' job_details.id  %}" class="btn btn-danger btn-sm">
+                                    <i class="mdi mdi-delete"></i> Delete
+                                </a>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="11" class="text-center">No job details available.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    @media (max-width: 767px) {
+        .table-responsive {
+            overflow-x: auto;
+        }
+        .table td, .table th {
+            white-space: nowrap;
+        }
+    }
+</style>
+
+{% endblock %}

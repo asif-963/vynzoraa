@@ -244,6 +244,50 @@
       </div>
     </li>
 
+    <li class="nav-item nav-category">Websites</li>
+    <li class="nav-item">
+      <a class="nav-link" data-bs-toggle="collapse" href="#contact1234" aria-expanded="false" aria-controls="contact">
+        <i class="menu-icon mdi mdi-camera-iris"></i>
+        <span class="menu-title">Websites</span>
+        <i class="menu-arrow"></i>
+      </a>
+      <div class="collapse" id="contact1234">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item"> <a class="nav-link" href="{% url 'add_category'%}"> Add Category</a></li>
+          <li class="nav-item"> <a class="nav-link" href="{% url 'view_category'%}"> View Category</a></li>
+          <li class="nav-item"> <a class="nav-link" href="{% url 'add_website'%}"> Add Website</a></li>
+          <li class="nav-item"> <a class="nav-link" href="{% url 'view_websites'%}"> View Websites</a></li>
+        </ul>
+      </div>
+    </li>
+    <li class="nav-item nav-category">Job Details</li>
+    <li class="nav-item">
+      <a class="nav-link" data-bs-toggle="collapse" href="#job" aria-expanded="false" aria-controls="job">
+        <i class="menu-icon mdi mdi mdi-book-open"></i>
+        <span class="menu-title">Job Details</span>
+        <i class="menu-arrow"></i>
+      </a>
+      <div class="collapse" id="job">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item"> <a class="nav-link" href="{% url 'add_job_details' %}"> Add Job Details </a></li>
+          <li class="nav-item"> <a class="nav-link" href="{% url 'view_job_details' %}"> View Job Details </a></li>
+        </ul>
+      </div>
+    </li>
+    <li class="nav-item nav-category">Candidate Details</li>
+    <li class="nav-item">
+      <a class="nav-link" data-bs-toggle="collapse" href="#candidate" aria-expanded="false" aria-controls="candidate">
+        <i class="menu-icon mdi mdi-account-box"></i>
+        <span class="menu-title">Candidate Details</span>
+        <i class="menu-arrow"></i>
+      </a>
+      <div class="collapse" id="candidate">
+        <ul class="nav flex-column sub-menu">
+          
+          <li class="nav-item"> <a class="nav-link" href="{% url 'view_candidate_details' %}"> View Candidate Details </a></li>
+        </ul>
+      </div>
+    </li>
     
     <li class="nav-item nav-category">Blogs</li>
     <li class="nav-item">

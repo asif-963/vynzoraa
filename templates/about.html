@@ -19,6 +19,8 @@
     <link rel="stylesheet" href="{% static 'css1/styles.css' %}">
     <link rel="stylesheet" href="{% static 'css1/vendor.css' %}">
 
+    <link rel="stylesheet" href="{% static 'css1/sstyle.css' %}">
+
     <!-- script
     ================================================== -->
     <script src="{% static 'js1/modernizr.js' %}"></script>
@@ -67,6 +69,8 @@
                     <li><a class="" href="{% url 'about' %}" title="About">About</a></li>
                     <li><a class="" href="{% url 'portfolio' %}" title="Works">Works</a></li>
                     <li><a class="" href="{% url 'blog' %}" title="About">Blogs</a></li>
+                    <li><a class="" href="{% url 'careers' %}" title="About">Careers</a></li>
+                    
 
                     <li class="dropdown " style="color: #a09c9c;">Services
     <ul class="dropdown-menu">
@@ -80,52 +84,7 @@
 </li>
 
                     
-<style>
-    /* Dropdown styling */
-.dropdown {
-    position: relative;
-}
-
-.dropdown-menu {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background: black;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    border-radius: 5px;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-    min-width: 200px;
-    z-index: 1000;
-}
-
-/* Styling for dropdown items */
-.dropdown-menu li {
-    border-bottom: 1px solid #ddd;
-}
-
-.dropdown-menu li:last-child {
-    border-bottom: none;
-}
-
-.dropdown-menu a {
-    display: block;
-    padding: 2px;
-    color: #a09c9c;
-    text-decoration: none;
-    transition: background 0.3s;
-}
-
-
-
-/* Show dropdown when hovering over the parent li */
-.dropdown:hover .dropdown-menu {
-    display: block;
-}
-
-</style>              
+             
 <script>
     document.addEventListener("DOMContentLoaded", function() {
     let dropdowns = document.querySelectorAll(".dropdown > a");
@@ -413,22 +372,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 </p>
             </div>
     
-            <style>
-                .s-about__photo {
-                    background-image: url('{% static "images1/about1.jpg" %}');
-                    background-repeat: no-repeat;
-                    background-position: center;
-                    background-size: cover;
-                    position: absolute;
-                    top: var(--vspace-0_5);
-                    right: var(--gutter-lg);
-                    left: var(--gutter-lg);
-                    bottom: var(--vspace-1);
-                }
-            </style>
+        
     
             <div class="column large-6 w-900-stack s-about__photo-block">
-                <div class="s-about__photo" data-aos="fade-up"></div>
+                <div class="s-about__photo" style="background-image: url('{% static "images1/about1.jpg" %}');" data-aos="fade-up"></div>
             </div>
         </div>
     
@@ -506,29 +453,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		</div> <!-- end row -->
 	</section> <!-- end s-team -->
 	
-	<style>
-		.team-member {
-			opacity: 0;
-			transform: scale(0.9);
-			transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-		}
-	
-		.team-img {
-			object-fit: cover;
-			width: 380px;
-			height: 500px;
-			transition: transform 0.3s ease-in-out;
-		}
-	
-		.team-img:hover {
-			transform: scale(1.05);
-		}
-	
-		.team-member.visible {
-			opacity: 1;
-			transform: scale(1);
-		}
-	</style>
+
 	
 	<script>
 		document.addEventListener("DOMContentLoaded", function() {
@@ -557,7 +482,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         <div class="row s-porfolio__top">
             <div class="column large-6 w-900-stack">
-                <div class="section-title" data-num="04" data-aos="fade-up">
+                <div class="section-title" data-num="03" data-aos="fade-up">
                     <h3 class="h6">Our Technologies</h3>
                 </div>
             </div>
@@ -582,37 +507,7 @@ document.addEventListener("DOMContentLoaded", () => {
     </section> <!-- end s-portfolio -->
 
 
-    <style>
-     
-
-        .slider {
-            height: 100px;
-            width: 100%;
-            overflow: hidden;
-            position: relative;
-            display: flex;
-            align-items: center;
-        }
-
-        .slide-track {
-            display: flex;
-            width: calc(250px * 14);
-            animation: scroll 40s linear infinite;
-        }
-
-        .slide {
-            height: 100px;
-            width: 250px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-250px * 7)); }
-        }
-    </style>
+   
 
 <section id="services" class="s-services" style="margin-top: -300px;">
 	<div class="row">
@@ -638,37 +533,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		{% endfor %}
 	</div>
 
-	<style>
-		.logo-grid {
-			display: grid;
-			grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); /* Adjusted minmax size for responsiveness */
-			gap: 10px; /* Reduced gap between logos */
-			justify-content: center;
-			align-items: center;
-			max-width: 1300px;
-			margin: 20px auto; /* Adjusted margin for centering */
-			padding: 20px 0;
-		}
-
-		.logo-item {
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			max-width: 100%; /* Ensures images do not overflow */
-		}
-
-		.logo-item img {
-			max-width: 100%; /* Ensures images do not overflow */
-			height: auto;
-			object-fit: contain;
-		}
-
-		@media screen and (max-width: 500px) {
-			.logo-item img {
-				width: 100%; /* Full width on smaller screens */
-			}
-		}
-	</style>
+	
 </section>
 
    
@@ -779,6 +644,9 @@ document.addEventListener("DOMContentLoaded", () => {
     <script src="{% static 'js1/jquery-3.2.1.min.js' %}"></script>
     <script src="{% static 'js1/plugins.js' %}"></script>
     <script src="{% static 'js1/main.js' %}"></script>
+    <script src="{% static 'js1/jssss.js' %}"></script>
+
+
 
 </body>
 

@@ -9,9 +9,12 @@
         <div class="card-body">
             <h4 class="card-title">Blog Details</h4>
             <div class="table-responsive">
-                <table class="table table-bordered" style="width: 1400px;">
+                <table class="table table-bordered" style="width: 3500px;">
                     <thead class="thead-light">
                         <tr>
+                            <th>Slug Name</th>
+                          <th>Meta title</th>
+                          <th>Meta Description</th>
                           <th>Blog Name</th>
                           <th>Blog Description</th>
                           <th>Blog Image</th>
@@ -23,6 +26,15 @@
                     <tbody>
                       {% for blog in blogs %}
                       <tr>
+                        <td style="width: 200px;">{{ blog.slug }}</td>
+                        <td style="width: 200px;">{{ blog.meta_title }}</td>
+                        <td style="max-width: 250px; /* Set the maximum width of the cell */
+                          word-wrap: break-word; /* Break words if they exceed the width */
+                          overflow-wrap: break-word; /* Ensures long words break onto the next line */
+                          white-space: normal; /* Allows wrapping onto multiple lines */
+                          padding: 10px; ">
+                            {{ blog.meta_description }}
+                        </td>
                           <td style="width: 200px;">{{ blog.name }}</td>
                           <td style="max-width: 500px; /* Set the maximum width of the cell */
                           word-wrap: break-word; /* Break words if they exceed the width */

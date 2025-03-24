@@ -1,4 +1,5 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 <head>
@@ -16,6 +17,7 @@
 
     <!-- CSS
     ================================================== -->
+    <link rel="stylesheet" href="{% static 'css1/sstyle.css' %}">
     <link rel="stylesheet" href="{% static 'css1/styles.css' %}">
     <link rel="stylesheet" href="{% static 'css1/vendor.css' %}">
 
@@ -36,7 +38,9 @@
     <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images1/fav.png' %}">
     <link rel="manifest" href="{% static 'site.webmanifest' %}">
 
+
 </head>
+
 <style>
     .s-about::before {
     background-image: url('{% static "images1/dots_blue.svg" %}');
@@ -45,8 +49,17 @@
 .s-hero__content h1::before {
     background-image: url('{% static "images1/dots_blue.svg" %}');
 }
-
+@media screen and (max-width: 768px) {
+        .s-hero__content h1 {
+            font-size: 8.5rem; /* Reduce size for mobile */
+        }
+        
+        .s-hero__content {
+            padding: 30px 10px; /* Add more padding for spacing */
+        }
+    }
 </style>
+
 
 <body id="top">
 
@@ -67,7 +80,7 @@
     <header class="s-header">
 
         <div class="s-header__logo">
-            <a href="index.html">
+            <a href="{% url 'index' %}">
                 <img src="{% static 'images1/logo22.png' %}" alt="Homepage" style="width: 110px; height: 18px;">
             </a>
         </div>
@@ -80,6 +93,7 @@
                     <li><a class="" href="{% url 'about' %}" title="About">About</a></li>
                     <li><a class="" href="{% url 'portfolio' %}" title="Works">Works</a></li>
                     <li><a class="" href="{% url 'blog' %}" title="About">Blogs</a></li>
+                    <li><a class="" href="{% url 'careers' %}" title="About">Careers</a></li>
 
                     <li class="dropdown " style="color: #a09c9c;">Services
     <ul class="dropdown-menu">
@@ -93,75 +107,14 @@
 </li>
 
                     
-<style>
-    /* Dropdown styling */
-.dropdown {
-    position: relative;
-}
-
-.dropdown-menu {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background: black;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    border-radius: 5px;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-    min-width: 200px;
-    z-index: 1000;
-}
-
-/* Styling for dropdown items */
-.dropdown-menu li {
-    border-bottom: 1px solid #ddd;
-}
-
-.dropdown-menu li:last-child {
-    border-bottom: none;
-}
-
-.dropdown-menu a {
-    display: block;
-    padding: 2px;
-    color: #a09c9c;
-    text-decoration: none;
-    transition: background 0.3s;
-}
-
-
-
-/* Show dropdown when hovering over the parent li */
-.dropdown:hover .dropdown-menu {
-    display: block;
-}
-
-</style>              
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-    let dropdowns = document.querySelectorAll(".dropdown > a");
-
-    dropdowns.forEach(function(dropdown) {
-        dropdown.addEventListener("click", function(event) {
-            event.preventDefault(); // Prevent default link behavior
-            let menu = this.nextElementSibling;
-            menu.style.display = menu.style.display === "block" ? "none" : "block";
-        });
-    });
-});
-
-</script>     
+             
+   
                     
                     <li><a class="" href="{% url 'contact' %}" title="About">Contacts</a></li>
                 </ul>
             </nav> <!-- end s-header__nav-wrap -->
 
-            <!-- <a href="mailto:#0" class="btn btn--primary btn--small">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 0l-6 22-8.129-7.239 7.802-8.234-10.458 7.227-7.215-1.754 24-12zm-15 16.668v7.332l3.258-4.431-3.258-2.901z"/></svg>
-                Get In Touch
-            </a> -->
+        
 
         </div> <!-- end header-content -->
 
@@ -181,18 +134,7 @@
         <div class="s-hero__bg" style="background-image: url('{% static "images1/hero1.jpg" %}');">
             <div class="gradient-overlay"></div>
         </div>
-        <style>
-            @media screen and (max-width: 768px) {
-    .s-hero__content h1 {
-        font-size: 8.5rem; /* Reduce size for mobile */
-    }
-    
-    .s-hero__content {
-        padding: 30px 10px; /* Add more padding for spacing */
-    }
-}
-
-        </style>
+       
 
         <div class="row s-hero__content">
             <div class="column">
@@ -201,8 +143,8 @@
                 </h1>
                 <div class="s-hero__content-about">
 
-                    <p>
-                        Tired of Being Invisible Online? <br> We Help You Stand Out! <br>
+                    <p style="font-size:25px">
+                        Tired of Being Invisible Online? <br> We Help You Stand Out! 
                         Get a Free Digital Growth Plan
                     </p>
     
@@ -264,22 +206,10 @@
                 </p>
             </div>
     
-            <style>
-                .s-about__photo {
-                    background-image: url('{% static "images1/about1.jpg" %}');
-                    background-repeat: no-repeat;
-                    background-position: center;
-                    background-size: cover;
-                    position: absolute;
-                    top: var(--vspace-0_5);
-                    right: var(--gutter-lg);
-                    left: var(--gutter-lg);
-                    bottom: var(--vspace-1);
-                }
-            </style>
+           
     
             <div class="column large-6 w-900-stack s-about__photo-block">
-                <div class="s-about__photo" data-aos="fade-up"></div>
+                <div class="s-about__photo " data-aos="fade-up" style="background-image: url('{% static "images1/about1.jpg" %}');"></div>
             </div>
         </div>
     
@@ -322,31 +252,7 @@
 
     <!-- services
     ================================================== -->
-    <style>
-        .service-icon--product-design {
-            background-image: url("{% static 'images1/icons/services/icon-product-design_corrected.svg' %}");
-        }
-        
-        .service-icon--branding {
-            background-image: url("{% static 'images1/icons/services/icon-branding_corrected.svg' %}");
-        }
-        
-        .service-icon--frontend {
-            background-image: url("{% static 'images1/icons/services/icon-frontend_corrected.svg' %}");
-        }
-        
-        .service-icon--research {
-            background-image: url("{% static 'images1/icons/services/icon-research_corrected.svg' %}");
-        }
-        
-        .service-icon--illustration {
-            background-image: url("{% static 'images1/icons/services/icon-illustration_corrected.svg' %}");
-        }
-        
-        .service-icon--ecommerce {
-            background-image: url("{% static 'images1/icons/services/icon-ecommerce_corrected.svg' %}");
-        }
-    </style>
+   
     <section id="services" class="s-services">
 
         <div class="row">
@@ -368,15 +274,7 @@
                 </p>
             </div>
         </div>
-        <style>
-            .item-service a{
-                color: white;
-            }
-            .item-service:hover h3,
-            .item-service:hover p {
-                color: #243fa2;
-            }
-        </style>
+       
     
         <div class="row block-large-1-2 block-tab-full s-services__services item-list">
             <div class="column item item-service" data-aos="fade-up">
@@ -507,98 +405,7 @@
     </section> -->
     
     
-    <style>
-        .carousel {
-            overflow: hidden;
-            width: 100%;
-            position: relative;
-        }
-    
-        .carousel-container {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-            align-items: stretch; 
-        }
-    
-        .carousel-item {
-            flex: 0 0 33.33%;
-            padding: 10px;
-            box-sizing: border-box;
-        }
-    
-        .folio-item {
-     
-            height: 100%; /* Ensure all items have equal height */
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); */
-            /* border-radius: 8px; */
-        }
-    
-        .folio-item__thumb img {
-            width: 100%;
-            height: 400px; /* Set a fixed height for images */
-            object-fit: cover; /* Ensures consistent image scaling */
-            /* border-radius: 8px 8px 0 0; */
-        }
-    
-        .folio-item__info, 
-        .folio-item__caption, 
-        .folio-item__project-link {
-            padding: 10px;
-        }
-    
-        /* Responsive adjustments */
-        @media (max-width: 1024px) {
-            .carousel-item {
-                flex: 0 0 50%; /* Show 2 items on tablets */
-            }
-        }
-    
-        @media (max-width: 768px) {
-            .carousel-item {
-                flex: 0 0 100%; /* Show 1 item per view on small screens */
-            }
-        }
-    </style>
-    
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const carousel = document.querySelector(".carousel-container");
-            const items = document.querySelectorAll(".carousel-item");
-            let index = 0;
-            let itemWidth = items[0].offsetWidth;
-    
-            // Clone first few items for smooth infinite effect
-            items.forEach(item => {
-                let clone = item.cloneNode(true);
-                carousel.appendChild(clone);
-            });
-    
-            function updateWidth() {
-                itemWidth = items[0].offsetWidth;
-            }
-    
-            function moveCarousel() {
-                index++;
-                const offset = index * itemWidth;
-                carousel.style.transition = "transform 0.5s ease-in-out";
-                carousel.style.transform = `translateX(-${offset}px)`;
-    
-                if (index >= items.length / 2) {
-                    setTimeout(() => {
-                        carousel.style.transition = "none";
-                        carousel.style.transform = `translateX(0px)`;
-                        index = 0;
-                    }, 500);
-                }
-            }
-    
-            setInterval(moveCarousel, 3000);
-            window.addEventListener("resize", updateWidth);
-        });
-    </script>
+
     
     
 
@@ -634,37 +441,7 @@
     </section> <!-- end s-portfolio -->
 
 
-    <style>
-     
-
-        .slider {
-            height: 100px;
-            width: 100%;
-            overflow: hidden;
-            position: relative;
-            display: flex;
-            align-items: center;
-        }
-
-        .slide-track {
-            display: flex;
-            width: calc(250px * 14);
-            animation: scroll 40s linear infinite;
-        }
-
-        .slide {
-            height: 100px;
-            width: 250px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-250px * 7)); }
-        }
-    </style>
+  
 
 
 
@@ -734,37 +511,7 @@
             {% endfor %}
         </div>
     
-        <style>
-            .logo-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); /* Adjusted minmax size for responsiveness */
-                gap: 10px; /* Reduced gap between logos */
-                justify-content: center;
-                align-items: center;
-                max-width: 1300px;
-                margin: 20px auto; /* Adjusted margin for centering */
-                padding: 20px 0;
-            }
-    
-            .logo-item {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                max-width: 100%; /* Ensures images do not overflow */
-            }
-    
-            .logo-item img {
-                max-width: 100%; /* Ensures images do not overflow */
-                height: auto;
-                object-fit: contain;
-            }
-    
-            @media screen and (max-width: 500px) {
-                .logo-item img {
-                    width: 100%; /* Full width on smaller screens */
-                }
-            }
-        </style>
+       
     </section>
     
 

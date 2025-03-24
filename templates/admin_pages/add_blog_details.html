@@ -11,6 +11,18 @@
           <form class="forms-sample" method="POST" enctype="multipart/form-data">
               {% csrf_token %}
               <div class="form-group">
+                <label for="exampleName">Slug Name</label>
+                <input type="text" class="form-control" id="exampleName" name="slug" placeholder="Enter Blog Name">
+            </div>
+            <div class="form-group">
+              <label for="exampleName">Meta Title</label>
+              <input type="text" class="form-control" id="exampleName" name="meta_title" placeholder="Enter Meta Title">
+          </div>
+          <div class="form-group">
+            <label for="exampleName">Meta Description</label>
+            <textarea class="form-control" id="exampleName" name="meta_description" style="height: 150px;" rows="5" placeholder="Enter Meta Description"></textarea>
+        </div>
+              <div class="form-group">
                   <label for="exampleName">Blog Name</label>
                   <input type="text" class="form-control" id="exampleName" name="name" placeholder="Enter Blog Name">
               </div>

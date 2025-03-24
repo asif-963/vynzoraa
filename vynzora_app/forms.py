@@ -1,5 +1,5 @@
 from django import forms
-from .models import ContactModel, ClientReview, Client_Logo, Technologies, Blog, Team, ProjectModel, Certificates
+from .models import ContactModel, ClientReview, Client_Logo, Technologies, Blog, Team, ProjectModel, Certificates, Category, Website, Career_Model, Candidate
 
 
 
@@ -53,4 +53,33 @@ class ProjectModelForm(forms.ModelForm):
 class CertificatesForm(forms.ModelForm):
     class Meta:
         model = Certificates
+        fields = '__all__'
+
+
+# Category
+
+class CategoryForm(forms.ModelForm):
+    class Meta:
+        model = Category
+        fields = '__all__'
+
+# Website
+class WebsiteForm(forms.ModelForm):
+    class Meta:
+        model = Website
+        fields = '__all__'
+
+
+# careeers
+
+class CareerForm(forms.ModelForm):
+    class Meta:
+        model = Career_Model
+        fields = '__all__'
+
+# Candidate
+
+class CandidateForm(forms.ModelForm):
+    class Meta:
+        model = Candidate
         fields = '__all__'

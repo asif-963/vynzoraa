@@ -21,6 +21,7 @@
     ================================================== -->
     <link rel="stylesheet" href="{% static 'css1/styles.css' %}">
     <link rel="stylesheet" href="{% static 'css1/vendor.css' %}">
+    <link rel="stylesheet" href="{% static 'css1/sstyle.css' %}">
 
     <!-- script
     ================================================== -->
@@ -68,6 +69,7 @@
                   <li><a class="" href="{% url 'about' %}" title="About">About</a></li>
                   <li><a class="" href="{% url 'portfolio' %}" title="Works">Works</a></li>
                   <li><a class="" href="{% url 'blog' %}" title="About">Blogs</a></li>
+                  <li><a class="" href="{% url 'careers' %}" title="About">Careers</a></li>
 
                   <li class="dropdown " style="color: #a09c9c;">Services
   <ul class="dropdown-menu">
@@ -80,67 +82,6 @@
   </ul>
 </li>
 
-                  
-<style>
-  /* Dropdown styling */
-.dropdown {
-  position: relative;
-}
-
-.dropdown-menu {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background: black;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  border-radius: 5px;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-  min-width: 200px;
-  z-index: 1000;
-}
-
-/* Styling for dropdown items */
-.dropdown-menu li {
-  border-bottom: 1px solid #ddd;
-}
-
-.dropdown-menu li:last-child {
-  border-bottom: none;
-}
-
-.dropdown-menu a {
-  display: block;
-  padding: 2px;
-  color: #a09c9c;
-  text-decoration: none;
-  transition: background 0.3s;
-}
-
-
-
-/* Show dropdown when hovering over the parent li */
-.dropdown:hover .dropdown-menu {
-  display: block;
-}
-
-</style>              
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-  let dropdowns = document.querySelectorAll(".dropdown > a");
-
-  dropdowns.forEach(function(dropdown) {
-      dropdown.addEventListener("click", function(event) {
-          event.preventDefault(); // Prevent default link behavior
-          let menu = this.nextElementSibling;
-          menu.style.display = menu.style.display === "block" ? "none" : "block";
-      });
-  });
-});
-
-</script>     
                   
                   <li><a class="" href="{% url 'contact' %}" title="About">Contacts</a></li>
               </ul>
@@ -419,22 +360,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
             
     
-            <style>
-                .s-about__photo {
-                    background-image: url('{% static "images1/web.jpg" %}');
-                    background-repeat: no-repeat;
-                    background-position: center;
-                    background-size: cover;
-                    position: absolute;
-                    top: var(--vspace-0_5);
-                    right: var(--gutter-lg);
-                    left: var(--gutter-lg);
-                    bottom: var(--vspace-1);
-                }
-            </style>
+         
     
             <div class="column large-6 w-900-stack s-about__photo-block">
-                <div class="s-about__photo" data-aos="fade-up"></div>
+                <div class="s-about__photo" style="background-image: url('{% static "images1/web.jpg" %}');" data-aos="fade-up"></div>
             </div>
             <div class="column large-12 intro">
 
@@ -644,6 +573,7 @@ Vynzora is your perfect partner! Our expert team and cutting-edge web solutions 
     <script src="{% static 'js1/jquery-3.2.1.min.js' %}"></script>
     <script src="{% static 'js1/plugins.js' %}"></script>
     <script src="{% static 'js1/main.js' %}"></script>
+    <script src="{% static 'js1/jssss.js' %}"></script>
 
 </body>
 

@@ -6,8 +6,8 @@
     <!--- basic page needs
     ================================================== -->
     <meta charset="utf-8">
-    <title>{{ blog.name }}</title>
-    <meta name="description" content="{{ blog.description|striptags|truncatewords:100 }}">
+    <title>{{ blog.meta_title }}</title>
+    <meta name="description" content="{{ blog.meta_description }}">
     <meta name="author" content="Vynzora">
     
 
@@ -17,6 +17,8 @@
 
     <!-- CSS
     ================================================== -->
+    <link rel="stylesheet" href="{% static 'css1/sstyle.css' %}">
+
     <link rel="stylesheet" href="{% static 'css1/styles.css' %}">
     <link rel="stylesheet" href="{% static 'css1/vendor.css' %}">
 
@@ -33,16 +35,7 @@
     <link rel="manifest" href="{% static 'site.webmanifest' %}">
 
 </head>
-<style>
-    .s-about::before {
-    background-image: url('{% static "images1/dots_blue.svg" %}');
-}
 
-.s-hero__content h1::before {
-    background-image: url('{% static "images1/dots_blue.svg" %}');
-}
-
-</style>
 
 <body id="top">
 
@@ -57,40 +50,6 @@
         </div>
     </div>
 
-<style>
-    .s-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
-  padding: 10px 20px;
-  z-index: 1000; /* Ensure it stays on top */
-  transition: background 0.3s ease-in-out;
-}
-
-/* Add some space at the top of the page to prevent content from hiding behind the fixed header */
-body {
-  padding-top: 80px; /* Adjust based on header height */
-}
-
-/* Change background color on scroll */
-.s-header.scrolled {
-  background: rgba(0, 0, 0, 1); /* Fully opaque background */
-}
-
-</style>
-<script>
-    window.addEventListener("scroll", function () {
-  const header = document.querySelector(".s-header");
-  if (window.scrollY > 50) {
-    header.classList.add("scrolled");
-  } else {
-    header.classList.remove("scrolled");
-  }
-});
-
-</script>
     <!-- header
     ================================================== -->
     <header class="s-header">
@@ -109,6 +68,7 @@ body {
                   <li><a class="" href="{% url 'about' %}" title="About">About</a></li>
                   <li><a class="" href="{% url 'portfolio' %}" title="Works">Works</a></li>
                   <li><a class="" href="{% url 'blog' %}" title="About">Blogs</a></li>
+                  <li><a class="" href="{% url 'careers' %}" title="About">Careers</a></li>
 
                   <li class="dropdown " style="color: #a09c9c;">Services
   <ul class="dropdown-menu">
@@ -121,67 +81,6 @@ body {
   </ul>
 </li>
 
-                  
-<style>
-  /* Dropdown styling */
-.dropdown {
-  position: relative;
-}
-
-.dropdown-menu {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background: black;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  border-radius: 5px;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-  min-width: 200px;
-  z-index: 1000;
-}
-
-/* Styling for dropdown items */
-.dropdown-menu li {
-  border-bottom: 1px solid #ddd;
-}
-
-.dropdown-menu li:last-child {
-  border-bottom: none;
-}
-
-.dropdown-menu a {
-  display: block;
-  padding: 2px;
-  color: #a09c9c;
-  text-decoration: none;
-  transition: background 0.3s;
-}
-
-
-
-/* Show dropdown when hovering over the parent li */
-.dropdown:hover .dropdown-menu {
-  display: block;
-}
-
-</style>              
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-  let dropdowns = document.querySelectorAll(".dropdown > a");
-
-  dropdowns.forEach(function(dropdown) {
-      dropdown.addEventListener("click", function(event) {
-          event.preventDefault(); // Prevent default link behavior
-          let menu = this.nextElementSibling;
-          menu.style.display = menu.style.display === "block" ? "none" : "block";
-      });
-  });
-});
-
-</script>     
                   
                   <li><a class="" href="{% url 'contact' %}" title="About">Contacts</a></li>
               </ul>
@@ -214,7 +113,7 @@ body {
               <span class="divider"></span>
               <span>NIT</span> -->
             </div>
-            <h1 class="section-number">{{ blog.name }}</h1>
+            <h1 class="section-number">{{ blog.meta_title }}</h1>
           </div>
           <div class="main-content">
             <h2 class="title">{{ blog.name }}</h2>
@@ -447,77 +346,24 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="column large-4 tab-12">
           <h3>Recent Blogs</h3>
           <ul class="recent-blogs">
-              {% for recent_post in recent_posts %}
-              <li>
-                  <a href="{% url 'blog_details' recent_post.id %}">
-                      <img src="{{ recent_post.image.url }}" alt="{{ recent_post.name }}" class="recent-img">
-                      <div class="recent-info">
-                          <a href="{% url 'blog_details' recent_post.id %}" style="color: #fff;">{{ recent_post.name }}</a>
-                          <p class="blog-date">{{ recent_post.created_date|date:"F j, Y" }}</p>
-                      </div>
-                  </a>
-              </li>
-              {% empty %}
-              <li>No recent posts available.</li>
-              
-              {% endfor %}
+            {% for recent_post in recent_posts %}
+            <li>
+                <a href="{% url 'blog_details' slug=recent_post.slug %}">
+                    <img src="{{ recent_post.image.url }}" alt="{{ recent_post.name }}" class="recent-img">
+                    <div class="recent-info">
+                        <a href="{% url 'blog_details' slug=recent_post.slug %}" style="color: #fff;">{{ recent_post.name }}</a>
+                        <p class="blog-date">{{ recent_post.created_date|date:"F j, Y" }}</p>
+                    </div>
+                </a>
+            </li>
+            {% empty %}
+            <li>No recent posts available.</li>
+            {% endfor %}
           </ul>
       </div>
       
     </div>
-<style>
-    .blog-details {
-    text-align: left;
-    margin-bottom: 20px;
-}
-
-.blog-image {
-    width: 100%;
-    border-radius: 10px;
-}
-
-.blog-title {
-    font-size: 24px;
-    margin-top: 15px;
-}
-
-.blog-description {
-    font-size: 16px;
-    color: #555;
-    line-height: 1.6;
-}
-
-.recent-blogs {
-    list-style: none;
-    padding: 0;
-}
-
-.recent-blogs li {
-    display: flex;
-    align-items: center;
-    margin-bottom: 15px;
-}
-
-.recent-img {
-    width: 60px;
-    height: 60px;
-    border-radius: 5px;
-    margin-right: 10px;
-}
-
-.recent-info a {
-    font-size: 14px;
-    font-weight: bold;
-    text-decoration: none;
-    color: #333;
-}
-
-.blog-date {
-    font-size: 12px;
-    color: #777;
-}
-
-</style>    
+  
    
 
     
@@ -645,6 +491,7 @@ document.addEventListener("DOMContentLoaded", () => {
     <script src="{% static 'js1/jquery-3.2.1.min.js' %}"></script>
     <script src="{% static 'js1/plugins.js' %}"></script>
     <script src="{% static 'js1/main.js' %}"></script>
+    <script src="{% static 'js1/jssss.js' %}"></script>
 
 </body>
 

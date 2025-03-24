@@ -1,0 +1,93 @@
+{% extends "admin_pages/base.html" %}
+{% load static %}
+
+{% block content %}
+      
+            <div class="container">
+              <div class="row justify-content-center">
+                <div class="col-md-6 grid-margin stretch-card">
+                  <div class="card">
+                    <div class="card-body">
+                      <h4 class="card-title">Add Job Details</h4>
+                      <!-- <p class="card-description">
+                        Basic form layout
+                      </p> -->
+                      <form class="forms-sample" method="POST" enctype="multipart/form-data"> {% csrf_token %}
+                        <div class="form-group">
+                          <label for="JobPosition">Job Position</label>
+                          <input type="text" class="form-control" id="JobPosition" name="job_position" placeholder="Job Position">
+                        </div>
+                        <div class="form-group">
+                          <label for="JobType">Job Type</label>
+                          <input type="text" class="form-control" id="JobType" name="job_type" placeholder="Full time/Part time">
+                        </div>
+                        <div class="form-group">
+                          <label for="CompanyName">Company Name</label>
+                          <input type="text" class="form-control" id="CompanyName" name="company_name" placeholder="Company Name">
+                        </div>
+                        <div class="form-group">
+                          <label for="place">Place</label>
+                          <input type="text" class="form-control" id="place" name="place" placeholder="Place">
+                        </div>
+                        <div class="form-group">
+                          <label for="exampleDescription">Job Details</label>
+                          <!-- <textarea class="form-control" name="job_details" id="exampleDescription" rows="3" style="height: 150px;" placeholder="job details"></textarea> -->
+                          <textarea class="form-control" id="exampleDescription" name="job_details" rows="4" style="height: 150px;" placeholder="Job Details">
+                          
+                            
+                            </textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                          <label for="salary">Monthly Salary</label>
+                          <input type="number" class="form-control" id="salary" name="salary" placeholder="Salary">
+                        </div>
+                        <div class="form-group">
+                          <label for="date">Posted Date</label>
+                          <input type="date" class="form-control" id="date" name="posted_date" placeholder="Place">
+                        </div>
+                        <div class="form-group">
+                          <label for="PostDate">End Date</label>
+                          <input type="date" class="form-control" id="PostDate" name="end_date" placeholder="End Date">
+                        </div>
+                        <div class="form-group">
+                          <label for="EndDate">Post End Date</label>
+                          <input type="datetime-local" class="form-control" id="EndDate" name="post_end_date" placeholder="Post End Date">
+                        </div>
+                        <button type="submit" class="btn btn-primary me-2" style="width: 100px;text-align: center;" >Submit</button>
+                      </div>
+                      
+                        
+                      
+                        <div class="form-check form-check-flat form-check-primary">
+                          <label class="form-check-label">
+                            <!-- <input type="checkbox" class="form-check-input">
+                            Remember me -->
+                          </label>
+                        </div>
+                        
+                        <!-- <button class="btn btn-light">Cancel</button> -->
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script>
+          <script>
+            document.addEventListener('DOMContentLoaded', function() {
+    // Initialize CKEditor
+    ClassicEditor
+        .create(document.querySelector('#exampleDescription'))
+        .then(editor => {
+            console.log(editor);
+        })
+        .catch(error => {
+            console.error(error);
+        });
+});
+
+          </script>
+            {% endblock %}
+
+        

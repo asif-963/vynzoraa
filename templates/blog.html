@@ -19,6 +19,7 @@
 
     <!-- CSS
     ================================================== -->
+    <link rel="stylesheet" href="{% static 'css1/sstyle.css' %}">
     <link rel="stylesheet" href="{% static 'css1/styles.css' %}">
     <link rel="stylesheet" href="{% static 'css1/vendor.css' %}">
 
@@ -35,16 +36,7 @@
     <link rel="manifest" href="{% static 'site.webmanifest' %}">
 
 </head>
-<style>
-    .s-about::before {
-    background-image: url('{% static "images1/dots_blue.svg" %}');
-}
 
-.s-hero__content h1::before {
-    background-image: url('{% static "images1/dots_blue.svg" %}');
-}
-
-</style>
 
 <body id="top">
 
@@ -60,17 +52,7 @@
     </div>
 
 
-<script>
-    window.addEventListener("scroll", function () {
-  const header = document.querySelector(".s-header");
-  if (window.scrollY > 50) {
-    header.classList.add("scrolled");
-  } else {
-    header.classList.remove("scrolled");
-  }
-});
 
-</script>
 <header class="s-header">
 
   <div class="s-header__logo">
@@ -87,6 +69,7 @@
               <li><a class="" href="{% url 'about' %}" title="About">About</a></li>
               <li><a class="" href="{% url 'portfolio' %}" title="Works">Works</a></li>
               <li><a class="" href="{% url 'blog' %}" title="About">Blogs</a></li>
+              <li><a class="" href="{% url 'careers' %}" title="About">Careers</a></li>
 
               <li class="dropdown " style="color: #a09c9c;">Services
 <ul class="dropdown-menu">
@@ -99,67 +82,7 @@
 </ul>
 </li>
 
-              
-<style>
-/* Dropdown styling */
-.dropdown {
-position: relative;
-}
-
-.dropdown-menu {
-display: none;
-position: absolute;
-top: 100%;
-left: 0;
-background: black;
-list-style: none;
-padding: 0;
-margin: 0;
-border-radius: 5px;
-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-min-width: 200px;
-z-index: 1000;
-}
-
-/* Styling for dropdown items */
-.dropdown-menu li {
-border-bottom: 1px solid #ddd;
-}
-
-.dropdown-menu li:last-child {
-border-bottom: none;
-}
-
-.dropdown-menu a {
-display: block;
-padding: 2px;
-color: #a09c9c;
-text-decoration: none;
-transition: background 0.3s;
-}
-
-
-
-/* Show dropdown when hovering over the parent li */
-.dropdown:hover .dropdown-menu {
-display: block;
-}
-
-</style>              
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-let dropdowns = document.querySelectorAll(".dropdown > a");
-
-dropdowns.forEach(function(dropdown) {
-  dropdown.addEventListener("click", function(event) {
-      event.preventDefault(); // Prevent default link behavior
-      let menu = this.nextElementSibling;
-      menu.style.display = menu.style.display === "block" ? "none" : "block";
-  });
-});
-});
-
-</script>     
+   
               
               <li><a class="" href="{% url 'contact' %}" title="About">Contacts</a></li>
           </ul>
@@ -426,7 +349,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="folio-item">
             <div class="folio-item__thumb">
 				<a class="folio-item__thumb-link" href="{{ blog.image.url }}" title="{{ blog.name }}" data-size="1050x700">
-					<a href="{% url 'blog_details' blog.id %}"><img src="{{ blog.image.url }}" 
+					<a href="{% url 'blog_details' slug=blog.slug  %}"><img src="{{ blog.image.url }}" 
 						 alt="{{ blog.name }}" 
 						 style="width: 800px; height: 400px; object-fit: cover;" 
 						 srcset="{{ blog.image.url }} 1x, {{ blog.image.url }} 2x"></a>
@@ -437,7 +360,7 @@ document.addEventListener("DOMContentLoaded", () => {
               
                 <h4 class="folio-item__title">{{ blog.name|truncatewords:5 }}</h4>
             </div>
-            <a href="{% url 'blog_details' blog.id %}" title="Project Link" class="folio-item__project-link">{{ blog.name }}</a>
+            <a href="{% url 'blog_details' slug=blog.slug  %}" title="Project Link" class="folio-item__project-link">{{ blog.name }}</a>
       
         </div>
     </div> <!-- end column -->

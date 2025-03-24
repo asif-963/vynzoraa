@@ -5,11 +5,11 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_protect
 from django.contrib import messages
 import random
+from django.utils import timezone
 
 
-from .models import ContactModel, ClientReview, Client_Logo, Technologies, Blog, Team, ProjectModel, Certificates 
-from .forms import ContactModelForm, ClientReviewForm, Client_Logo_Form, TechnologiesForm, BlogForm, TeamForm, ProjectModelForm, CertificatesForm
-
+from .models import ContactModel, ClientReview, Client_Logo, Technologies, Blog, Team, ProjectModel, Certificates, Category, Website, Service, Career_Model, Candidate
+from .forms import ContactModelForm, ClientReviewForm, Client_Logo_Form, TechnologiesForm, BlogForm, TeamForm, ProjectModelForm, CertificatesForm, CategoryForm, WebsiteForm, CareerForm, CandidateForm
 
 
 def index(request):
@@ -59,6 +59,9 @@ def contact(request):
             form.save()
             messages.success(request, 'Your message has been successfully submitted.')
             return redirect('contact')
+        else:
+            messages.error(request, "Oops! Please try again.")
+            return redirect('contact')
     else:
         form = ContactModelForm()
     return render(request, 'contact.html', {'form': form})
@@ -91,14 +94,34 @@ def terms_and_conditions(request):
 def privacy_and_policy(request):
     return render(request, 'privacy_and_policy.html')
 
+def careers(request):
+    careers = Career_Model.objects.filter(post_end_date__gte=timezone.now())  # Fetch active jobs
+    return render(request, 'careers.html', {'careers': careers})
+
+def submit_application(request):
+    job_positions = Career_Model.objects.all()
+    if request.method == 'POST':
+        form = CandidateForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Your application has been successfully submitted.')
+            return redirect('careers')  # Redirect after successful submission
+        else:
+            messages.error(request, "Oops! Please try again.")
+            return redirect('careers')
+    else:
+        form = CandidateForm()
+
+    return render(request, 'careers.html', {'form': form, 'job_positions':job_positions})
+
 def blog(request):
     blogs = Blog.objects.all().order_by('-created_date')
     return render(request, 'blog.html', {'blogs': blogs})
 
-def blog_details(request, blog_id):  # Use blog_id here
-    blog = get_object_or_404(Blog, pk=blog_id)  # Use blog_id instead of pk
-    recent_posts = Blog.objects.exclude(id=blog_id).order_by('-created_date')[:6] 
-    return render(request, 'blog_details.html', {'blog': blog, 'recent_posts':recent_posts})
+def blog_details(request, slug):  
+    blog = get_object_or_404(Blog, slug=slug)  # Get blog by slug
+    recent_posts = Blog.objects.exclude(id=blog.id).order_by('-created_date')[:6]  # Use blog.id instead of blog_id
+    return render(request, 'blog_details.html', {'blog': blog, 'recent_posts': recent_posts})
 
 
 # Admin Side
@@ -447,7 +470,7 @@ def update_certificates(request,id):
             form.save()
             return redirect('view_certificates')
     else:
-        form = TeamModelForm(instance=certificates)
+        form = CertificatesForm(instance=certificates)
     return render(request, 'admin_pages/update_certificates.html', {'form': form, 'certificates': certificates})
 
 
@@ -456,3 +479,224 @@ def delete_certificates(request,id):
     certificates = Certificates.objects.get(id=id)
     certificates.delete()
     return redirect('view_certificates')
+
+
+def category_website_detail(request, category_slug, website_slug):
+    category = get_object_or_404(Category, slug=category_slug)
+
+    # Ensure the category slug is correct
+    correct_slug = slugify(category.name)
+    if category.slug != correct_slug:
+        return redirect('website_detail', category_slug=correct_slug, website_slug=website_slug)
+
+    # Fetch website correctly
+    website = get_object_or_404(Website, slug=website_slug, category=category)
+
+    # Retrieve related services
+    services = Service.objects.filter(website=website)
+
+    return render(
+        request,
+        'website_detail.html',
+        {'category': category, 'website': website, 'services': services}
+    )
+
+
+
+
+
+# addd Catgeoory
+@login_required(login_url='user_login')
+def add_category(request):
+    if request.method == 'POST':
+        form = CategoryForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('view_category') 
+    else:
+        form = CategoryForm()
+
+    return render(request, 'admin_pages/add_category.html', {'form': form})
+
+@login_required(login_url='user_login')
+def view_category(request):
+    categories = Category.objects.all().order_by('-id')
+    return render(request, "admin_pages/view_category.html", {"categories": categories})
+
+
+
+
+from django.utils.text import slugify
+
+@login_required(login_url='user_login')
+def update_category(request, id):
+    category = get_object_or_404(Category, id=id)  # Fetch category by ID
+    old_slug = category.slug  # Store old slug
+
+    if request.method == 'POST':
+        form = CategoryForm(request.POST, instance=category)
+        if form.is_valid():
+            updated_category = form.save(commit=False)
+            updated_category.slug = slugify(updated_category.name)  # Generate new slug
+            updated_category.save()
+
+            # Redirect all related website URLs
+            return redirect('view_category')
+
+    else:
+        form = CategoryForm(instance=category)
+
+    return render(request, 'admin_pages/update_category.html', {'form': form, 'category': category})
+
+
+@login_required(login_url='user_login')
+def delete_category(request, category_id):
+    category = get_object_or_404(Category, id=category_id)  # ✅ Fetch category properly
+    category.delete()
+    return redirect("view_category")
+
+
+# Websitee
+
+@login_required(login_url='user_login')
+def add_website(request):
+    categories = Category.objects.all()
+
+    if request.method == "POST":
+        category_id = request.POST.get("category")
+        name = request.POST.get("name")
+        slug = request.POST.get("slug") or slugify(name)  # Ensure slug is generated
+        meta_title = request.POST.get("meta_title")
+        meta_description = request.POST.get("meta_description")
+        description = request.POST.get("description")
+        add_description = request.POST.get("add_description")
+        image = request.FILES.get("image")
+
+        # Ensure unique slug per category
+        base_slug = slug
+        counter = 1
+        while Website.objects.filter(slug=slug).exists():
+            slug = f"{base_slug}-{counter}"
+            counter += 1
+
+        website = Website.objects.create(
+            category_id=category_id,
+            name=name,
+            slug=slug,
+            meta_title=meta_title,
+            meta_description=meta_description,
+            description=description,
+            add_description=add_description,
+            image=image,
+        )
+
+        # Handling multiple services
+        service_headings = request.POST.getlist("service_heading[]")
+        service_descriptions = request.POST.getlist("service_description[]")
+
+        for heading, desc in zip(service_headings, service_descriptions):
+            if heading.strip():
+                Service.objects.create(website=website, heading=heading, description=desc)
+
+        # messages.success(request, "Website and services added successfully!")
+        return redirect(f"/{website.category.slug}/{website.slug}/")
+
+    return render(request, "admin_pages/add_website.html", {"categories": categories})
+
+
+@login_required(login_url='user_login')
+def view_websites(request):
+    websites = Website.objects.prefetch_related('services').all().order_by('-id')
+    return render(request, 'admin_pages/view_website.html', {'websites': websites})
+
+@login_required(login_url='user_login')
+def update_website(request, website_id):
+    website = get_object_or_404(Website, id=website_id)
+    categories = Category.objects.all()
+
+    if request.method == 'POST':
+        # Update website details
+        website.category_id = request.POST.get('category')
+        website.name = request.POST.get('name')
+        website.slug = request.POST.get('slug')
+        website.meta_title = request.POST.get('meta_title')
+        website.meta_description = request.POST.get('meta_description')
+        website.description = request.POST.get('description')
+        website.add_description = request.POST.get('add_description')
+
+        # Handle Image Upload
+        if 'image' in request.FILES:
+            website.image = request.FILES['image']
+
+        website.save()
+
+        # Clear existing services and add new ones
+        website.services.all().delete()  # Delete old services
+        service_headings = request.POST.getlist('service_heading[]')
+        service_descriptions = request.POST.getlist('service_description[]')
+
+        for heading, description in zip(service_headings, service_descriptions):
+            if heading and description:  # Ensure fields are not empty
+                Service.objects.create(website=website, heading=heading, description=description)
+
+        # messages.success(request, "Website updated successfully!")
+        return redirect('view_websites')  # Redirect to the view_websites page
+
+    return render(request, 'admin_pages/update_website.html', {'website': website, 'categories': categories})
+
+@login_required(login_url='user_login')
+def delete_website(request, website_id):
+    website = get_object_or_404(Website, id=website_id)
+    website.delete()
+    # messages.success(request, "Website deleted successfully!")
+    return redirect('view_websites') 
+
+
+
+@login_required(login_url='user_login')
+def add_job_details(request):
+    if request.method == 'POST':
+        form = CareerForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('view_job_details') 
+    else:
+        form = CareerForm()
+
+    return render(request, 'admin_pages/add_job_details.html', {'form': form})
+
+@login_required(login_url='user_login')
+def view_job_details(request):
+    job_details = Career_Model.objects.all().order_by('-id')
+    return render(request, 'admin_pages/view_job_details.html', {'job_details': job_details})
+
+@login_required(login_url='user_login')
+def update_job_details(request, id):
+    job_details = get_object_or_404(Career_Model, id=id)
+    if request.method == 'POST':
+        form = CareerForm(request.POST, request.FILES, instance=job_details)
+        if form.is_valid():
+            form.save()
+            return redirect('view_job_details')
+    else:
+        form = CareerForm(instance=job_details)
+    return render(request, 'admin_pages/update_job_details.html', {'form': form, 'job_details': job_details})
+
+
+@login_required(login_url='user_login')
+def delete_job_details(request,id):
+    job_details = Career_Model.objects.get(id=id)
+    job_details.delete()
+    return redirect('view_job_details')
+
+@login_required(login_url='user_login')
+def view_candidate_details(request):
+    certificates = Candidate.objects.all().order_by('-id')
+    return render(request, 'admin_pages/view_candidate_certificates.html', {'certificates': certificates})
+
+
+@login_required(login_url='user_login')
+def delete_candidate_certificates(request, id):
+    candidate = get_object_or_404(Candidate, id=id)
+    candidate.delete()
+    return redirect('view_candidate_details')
