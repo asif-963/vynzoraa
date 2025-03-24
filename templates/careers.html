@@ -333,266 +333,191 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
             </script>
-  <style>
-    body {
-        font-family: Arial, sans-serif;
-        background-color: #18141c;
-        color: white;
-        margin: 0;
-        padding: 0;
-    }
-    .container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 20px;
-        padding: 20px;
-    }
-    .card {
-        background: linear-gradient(71deg, #080509, #1a171c, #080509);
-        border-radius: 10px;
-        padding: 20px;
-        width: 100%;
-        max-width: 600px;
-        border: 2px solid silver;
-        text-align: left;
-        transition: 0.3s;
-    }
-    .card:hover {
-        box-shadow: 0 0 10px rgba(192, 192, 192, 0.5);
-    }
-    .card-title {
-        font-size: 25px;
-        font-weight: bold;
-        text-align: left;
-        margin-bottom: 5px;
-    }
-    .read-more-btn, .apply-btn, .submit-btn {
-        background-color: transparent;
-        color: white;
-        border: 1px solid white;
-        padding: 5px;
-        cursor: pointer;
-        width: 100%;
-        border-radius: 5px;
-    }
-    .read-more-btn:hover, .apply-btn:hover, .submit-btn:hover {
-        background-color: white;
-        color: #252030;
-    }
-    .modal {
-        display: none;
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background: #18141c;
-        padding: 20px;
-        width: 90%;
-        max-width: 1000px;
-        border-radius: 10px;
-        border: 2px solid silver;
-        color: white;
-        z-index: 1000;
-        overflow-y: auto;
-        max-height: 80vh;
-    }
-    .close-btn {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        background: transparent;
-        border: none;
-        font-size: 20px;
-        cursor: pointer;
-        color: white;
-    }
-    .form-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
-    }
-    .form-group {
-        display: flex;
-        flex-direction: column;
-    }
-    label {
-        font-size: 14px;
-        margin-bottom: 5px;
-        color: #ccc;
-    }
-    input, select {
-        padding: 6px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        background: #222;
-        color: white;
-    }
-    @media (max-width: 840px) {
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #18141c;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+        .card {
+            background: linear-gradient(71deg, #080509, #1a171c, #080509);
+            border-radius: 10px;
+            padding: 20px;
+            width: 100%;
+            max-width: 400px;
+            border: 2px solid silver;
+            text-align: left;
+            transition: 0.3s;
+        }
+        .card:hover {
+            box-shadow: 0 0 10px rgba(192, 192, 192, 0.5);
+        }
+        .card-title {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .read-more-btn, .apply-btn, .submit-btn {
+            background-color: transparent;
+            color: white;
+            border: 1px solid white;
+            padding: 1px;
+            cursor: pointer;
+            width: 100%;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .read-more-btn:hover, .apply-btn:hover, .submit-btn:hover {
+            background-color: white;
+            color: #252030;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #18141c;
+            padding: 20px;
+            width: 90%;
+            max-width: 600px;
+            border-radius: 10px;
+            border: 2px solid silver;
+            color: white;
+            z-index: 1000;
+            overflow-y: auto;
+            max-height: 80vh;
+        }
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: transparent;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            color: white;
+        }
         .form-grid {
-            grid-template-columns: 1fr;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
         }
-    }
-
-    
-</style>
-<style>
-  .card-details-container {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      max-width: 600px;
-      margin: auto;
-      padding: 15px;
-   
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  .card-detail-item {
-   
-      padding: 10px;
-      border-radius: 5px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 14px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-
-
-  /* Adjust second row to take 2 columns */
-  .card-detail-item:nth-child(4),
-  .card-detail-item:nth-child(5) {
-      grid-column: span 1;
-  }
-
-  @media (max-width: 600px) {
-      .card-details-container {
-          grid-template-columns: repeat(2, 1fr);
-      }
-  }
-</style>
-<div class="container">
-  <div class="row">
-      {% for job in careers %}
-      <div class="col-md-4"> <!-- 3 cards per row -->
-          <div class="card">
-            <div class="card-details-container">
-              <!-- First Row -->
-              <div class="card-detail-item"><i class="fa fa-building"></i> {{ job.company_name }}</div>
-              <div class="card-detail-item"><i class="fa fa-map-marker-alt"></i> {{ job.place }}</div>
-              <div class="card-detail-item"><i class="fas fa-rupee-sign"></i> {{ job.salary }} / Month</div>
-              
-              <!-- Second Row -->
-              <div class="card-detail-item"><i class="fa fa-calendar-alt"></i> {{ job.posted_date }}</div>
-              <div class="card-detail-item"><i class="fa fa-hourglass-end"></i> {{ job.end_date }}</div>
-          </div>
-          
-              <p class="card-title">{{ job.job_position }}</p>
-              <p style="font-size: 15px; text-align: left; margin: 5px 0;">
-                  {{ job.job_details|safe|truncatewords:20 }}
-              </p>
-              <button class="read-more-btn" onclick="openDetails('{{ job.id }}')">Read More</button>
-          </div>
-      </div>
-      {% endfor %}
-  </div>
-</div>
-
-<!-- Job Details Modal -->
-{% for job in careers %}
-<div id="jobModal-{{ job.id }}" class="modal">
-  <div class="modal-content">
-      <button class="close-btn" onclick="closeDetails('{{ job.id }}')">&times;</button>
-      <div class="card-details-container">
-          <div class="card-detail-item"><i class="fa fa-building"></i> {{ job.company_name }}</div>
-          <div class="card-detail-item"><i class="fa fa-map-marker-alt"></i> {{ job.place }}</div>
-          <div class="card-detail-item"><i class="fas fa-rupee-sign"></i> ₹{{ job.salary }} / Month</div>
-          <div class="card-detail-item"><i class="fa fa-calendar-alt"></i> {{ job.posted_date }}</div>
-          <div class="card-detail-item"><i class="fa fa-hourglass-end"></i> {{ job.end_date }}</div>
-      </div>
-      <br>
-      <p class="card-title">{{ job.job_position }}</p>
-      <p style="font-size: 15px; text-align: left;">{{ job.job_details|safe }}</p>
-      <button class="apply-btn" onclick="openApplicationForm('{{ job.id }}', '{{ job.job_position }}')">
-        Apply Now
-    </button>
-    
-  </div>
-</div>
-{% endfor %}
-
-<!-- Application Form Modal -->
-<div class="modal" id="applicationForm">
-    <button class="close-btn" onclick="closeApplicationForm()">&times;</button>
-    <h2>Apply for Job</h2>
-    <form id="jobApplication" method="post" enctype="multipart/form-data" action="{% url 'submit_application' %}">
-        {% csrf_token %}
-        <div class="form-grid">
-            <div class="form-group">
-                <label>Name</label>
-                <input type="text" name="name" required>
-            </div>
-            <div class="form-group">
-                <label>Email</label>
-                <input type="email" name="email" required>
-            </div>
-            <div class="form-group">
-                <label>Phone</label>
-                <input type="tel" name="phone" required>
-            </div>
-            <div class="form-group">
-                <label>Job Title</label>
-                <select name="job_position" required>
-                   
-                    {% for job in careers %}
-                        <option value="{{ job.id }}">{{ job.job_position }}</option>
-                    {% endfor %}
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Resume</label>
-                <input type="file" name="pdf_file" accept=".pdf,.doc,.docx" required>
-            </div>
-            <div class="form-group">
-                <button type="submit" class="submit-btn">Submit</button>
-            </div>
-        </div>
-    </form>
-</div>
-
-
-<script>
-  // Function to open job details modal
-function openDetails(jobId) {
-    document.getElementById(`jobModal-${jobId}`).style.display = "block";
-}
-
-// Function to close job details modal
-function closeDetails(jobId) {
-    document.getElementById(`jobModal-${jobId}`).style.display = "none";
-}
-
-// Function to open job application form modal
-function openApplicationForm() {
-    document.getElementById("applicationForm").style.display = "block";
-}
-
-// Function to close job application form modal
-function closeApplicationForm() {
-    document.getElementById("applicationForm").style.display = "none";
-}
-
-// Close modal if clicked outside the content area
-window.onclick = function(event) {
-    document.querySelectorAll('.modal').forEach(modal => {
-        if (event.target == modal) {
-            modal.style.display = "none";
+        .form-group {
+            display: flex;
+            flex-direction: column;
         }
-    });
-};
+        label {
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: #ccc;
+        }
+        input, select {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background: #222;
+            color: white;
+        }
+    </style>
 
-</script>
+
+    <div class="container">
+        {% for job in careers %}
+        <div class="card">
+          <p style="background-color: #222; font-size: 15px;">
+              <i class="fa fa-building"></i>&nbsp; {{ job.company_name }} &nbsp;
+              <i class="fa fa-map-marker-alt"></i>&nbsp;{{ job.place }} &nbsp;
+              <i class="fas fa-rupee-sign"></i> &nbsp;{{ job.salary }}
+          </p>
+          <p style="background-color: #222; font-size: 15px;">
+              <i class="fa fa-calendar-alt"></i> &nbsp; {{ job.posted_date }} &nbsp;
+              <i class="fa fa-hourglass-end"></i>&nbsp; {{ job.end_date }}
+          </p>
+          <p class="card-title">{{ job.job_position }}</p>
+          <p> {{ job.job_details|safe|truncatewords:20 }}</p>
+          <button class="read-more-btn" onclick="openDetails('{{ job.id }}')">Read More</button>
+      </div>
+        {% endfor %}
+    </div>
+
+    {% for job in careers %}
+    <div id="jobModal-{{ job.id }}" class="modal">
+        <button class="close-btn" onclick="closeDetails('{{ job.id }}')">&times;</button>
+        <h3>{{ job.job_position }}</h3>
+        <p>{{ job.job_details|safe }}</p>
+        <button class="apply-btn" onclick="openApplicationForm()">Apply Now</button>
+    </div>
+    {% endfor %}
+
+    <div id="applicationForm" class="modal">
+        <button class="close-btn" onclick="closeApplicationForm()">&times;</button>
+        <h2>Apply for Job</h2>
+        <form id="jobApplication" method="post" enctype="multipart/form-data" action="{% url 'submit_application' %}">
+            {% csrf_token %}
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label>Phone</label>
+                    <input type="tel" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label>Job Title</label>
+                    <select name="job_position" required>
+                        {% for job in careers %}
+                            <option value="{{ job.id }}">{{ job.job_position }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Resume</label>
+                    <input type="file" name="pdf_file" accept=".pdf,.doc,.docx" required>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="submit-btn">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function openDetails(jobId) {
+            document.getElementById(`jobModal-${jobId}`).style.display = "block";
+        }
+        function closeDetails(jobId) {
+            document.getElementById(`jobModal-${jobId}`).style.display = "none";
+        }
+        function openApplicationForm() {
+            document.getElementById("applicationForm").style.display = "block";
+        }
+        function closeApplicationForm() {
+            document.getElementById("applicationForm").style.display = "none";
+        }
+        window.onclick = function(event) {
+            document.querySelectorAll('.modal').forEach(modal => {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            });
+        };
+    </script>
 
 
 
